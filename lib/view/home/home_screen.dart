@@ -176,7 +176,6 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
-          endDrawer: const MyDrawer(),
         );
       },
     );

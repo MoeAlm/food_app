@@ -6,6 +6,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
+import 'drawer.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -78,6 +79,7 @@ class MainScreen extends StatelessWidget {
             },
             iconSize: width * 0.08,
           ),
+          endDrawer: MyDrawer(),
         );
       },
     );
