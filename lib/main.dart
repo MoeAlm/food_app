@@ -1,9 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app_api/view/detail_screen.dart';
-import 'package:food_app_api/view/home/home_screen.dart';
+
 import 'package:food_app_api/view/home/main_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
