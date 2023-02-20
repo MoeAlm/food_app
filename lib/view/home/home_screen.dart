@@ -163,10 +163,13 @@ class HomeScreen extends StatelessWidget {
                                   .px(5),
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => DetailsScreen(
-                                        model: cubit.food[index])));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailsScreen(
+                                  model: cubit.food[index],
+                                ),
+                              ),
+                            );
                           },
                         );
                       },
