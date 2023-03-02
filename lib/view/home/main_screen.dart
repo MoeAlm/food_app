@@ -6,6 +6,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
+import '../profile.dart';
 import 'drawer.dart';
 
 class MainScreen extends StatelessWidget {
@@ -25,12 +26,22 @@ class MainScreen extends StatelessWidget {
           key: key,
           appBar: AppBar(
             leading: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const ProfileScreen();
+                    },
+                  ),
+                );
+              },
               child: CircleAvatar(
-                backgroundColor: Colors.red,
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.asset('assets/images/profile.jpg'),
+                  borderRadius: BorderRadius.circular(50),
+                  child: Hero(
+                      tag: 'profile',
+                      child: Image.asset('assets/images/profile.jpg')),
                 ),
               ).px(6),
             ),
@@ -67,7 +78,7 @@ class MainScreen extends StatelessWidget {
             ),
           ),
           floatingActionButtonLocation:
-          FloatingActionButtonLocation.centerDocked,
+              FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: AnimatedBottomNavigationBar(
             notchSmoothness: NotchSmoothness.verySmoothEdge,
             gapLocation: GapLocation.center,
@@ -79,7 +90,7 @@ class MainScreen extends StatelessWidget {
             },
             iconSize: width * 0.08,
           ),
-          endDrawer: MyDrawer(),
+          endDrawer: const MyDrawer(),
         );
       },
     );
