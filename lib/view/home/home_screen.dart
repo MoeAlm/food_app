@@ -1,4 +1,3 @@
-import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/view/detail_screen.dart';
@@ -37,9 +36,8 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return Container(
                             decoration: BoxDecoration(
-                              color: Colors.blue.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(20)
-                            ),
+                                color: Colors.blue.withOpacity(0.3),
+                                borderRadius: BorderRadius.circular(20)),
                             child: SizedBox(
                               width: width,
                               child: Stack(
@@ -158,9 +156,13 @@ class HomeScreen extends StatelessWidget {
                       itemCount: cubit.food.length,
                       itemBuilder: (context, index) {
                         return InkWell(
-                          child:
-                              foodItem(height, width, model: cubit.food[index])
-                                  .px(5),
+                          child: foodItem(
+                            height,
+                            width,
+                            model: cubit.food[index],
+                            onPressed: () => cubit.liked(),
+                            icon: cubit.isLiked? Icon(Icons.favorite, color: Colors.red, size: width * 0.09,): Icon(Icons.favorite_border, size: width * 0.09)
+                          ).px(5),
                           onTap: () {
                             Navigator.push(
                               context,

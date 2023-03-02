@@ -36,7 +36,6 @@ dependencies:
   animated_bottom_navigation_bar: ^1.1.0+1
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
-  blurrycontainer: ^1.0.2
   smooth_page_indicator: ^1.0.1
   flutter_rating_bar: ^4.0.1
 dev_dependencies:

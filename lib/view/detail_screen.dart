@@ -88,8 +88,8 @@ class DetailsScreen extends StatelessWidget {
                   children: [
                     RatingBar.builder(
                       itemSize: width * 0.05,
-                      initialRating: 1,
-                      minRating: 1,
+                      initialRating: 0,
+                      minRating: 0.5,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,

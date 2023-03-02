@@ -27,7 +27,8 @@ class SearchLayout extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide.none,
-                )),
+                ),
+            ),
           ),
         ],
       ).py12().px16(),

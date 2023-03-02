@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../core/model/food_model.dart';
 
-Widget foodItem(double height, double width, {required Food model}) {
+Widget foodItem(double height, double width, {required Food model, required Widget icon,required Function() onPressed}) {
   return Card(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
     color: Colors.grey.shade200,
@@ -45,15 +45,10 @@ Widget foodItem(double height, double width, {required Food model}) {
           top: -2,
           right: -1,
           child: IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/icons/heart.png',
-              height: height * 0.05,
-              width: width * 0.07,
-              color: Colors.black45,
+            onPressed: onPressed,
+            icon: icon,
             ),
           ),
-        )
       ],
     ),
   ).py4();

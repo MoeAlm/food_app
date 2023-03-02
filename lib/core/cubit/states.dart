@@ -11,3 +11,5 @@ class RatingBarChanges extends AppState{}
 class PlusItemChanges extends AppState{}
 
 class MinusItemChanges extends AppState{}
+
+class LikeState extends AppState{}
