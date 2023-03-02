@@ -34,16 +34,19 @@ class DetailsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: height * 0.33,
-                  width: width,
-                  decoration: BoxDecoration(
-                      color: Vx.gray50,
-                      image: DecorationImage(
-                        image: AssetImage(model.img),
-                      ),
-                      borderRadius: const BorderRadiusDirectional.vertical(
-                          bottom: Radius.circular(20))),
+                Hero(
+                  tag: model.img,
+                  child: Container(
+                    height: height * 0.33,
+                    width: width,
+                    decoration: BoxDecoration(
+                        color: Vx.gray50,
+                        image: DecorationImage(
+                          image: AssetImage(model.img),
+                        ),
+                        borderRadius: const BorderRadiusDirectional.vertical(
+                            bottom: Radius.circular(20))),
+                  ),
                 ),
                 Row(
                   children: [

@@ -18,10 +18,13 @@ Widget foodItem(double height, double width, {required Food model, required Widg
             CircleAvatar(
               backgroundColor: Colors.white,
               radius: height * 0.082,
-              child: Image.asset(
-                model.img,
-                height: height * 0.35,
-                width: width * 0.35,
+              child: Hero(
+                tag: model.img,
+                child: Image.asset(
+                  model.img,
+                  height: height * 0.35,
+                  width: width * 0.35,
+                ),
               ),
             ).pOnly(top: 16),
             Text(
