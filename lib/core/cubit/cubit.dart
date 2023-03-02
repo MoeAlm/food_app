@@ -13,7 +13,7 @@ class FoodCubit extends Cubit<AppState> {
   int indexOfCategories = 0;
   int indexOfPageView = 0;
   double ratingCount = 0;
-  int priceCount = 0;
+  int priceCount = 1;
   bool isLiked = false;
 
   PageController pageController = PageController();
@@ -88,7 +88,10 @@ class FoodCubit extends Cubit<AppState> {
   }
 
   void minusCount() {
-    priceCount--;
+    if (priceCount > 0) {
+      priceCount--;
+      emit(MinusItemChanges());
+    }
     emit(MinusItemChanges());
   }
   void liked(){

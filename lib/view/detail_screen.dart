@@ -139,7 +139,7 @@ class DetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            '\$${cubit.priceCount <= 0 ? model.price : model.price * cubit.priceCount}',
+                            '\$${double.parse((model.price * cubit.priceCount).toStringAsFixed(2))}',
                             style: TextStyle(
                                 fontSize: width * 0.07,
                                 fontWeight: FontWeight.bold),
@@ -173,7 +173,8 @@ class DetailsScreen extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(60),
                                     side:
-                                        const BorderSide(color: Colors.orange)),
+                                        const BorderSide(color: Colors.orange),
+                                ),
                                 backgroundColor: Colors.transparent,
                                 foregroundColor: Colors.orange,
                                 splashColor: Colors.orange,
