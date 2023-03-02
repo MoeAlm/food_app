@@ -15,6 +15,7 @@ class FoodCubit extends Cubit<AppState> {
   double ratingCount = 0;
   int priceCount = 1;
   bool isLiked = false;
+  var likedIndex = [];
 
   PageController pageController = PageController();
 
