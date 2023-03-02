@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/view/detail_screen.dart';
 import 'package:food_app_api/view/home/page_indicator.dart';
-import 'package:food_app_api/view/home/search_layout.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../components/category_components.dart';
 import '../../components/food_components.dart';
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
-import 'drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,9 +35,11 @@ class HomeScreen extends StatelessWidget {
                         controller: cubit.pageController,
                         itemCount: 5,
                         itemBuilder: (context, index) {
-                          return BlurryContainer(
-                            blur: 5,
-                            color: Colors.blue.withOpacity(0.3),
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.blue.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
                             child: SizedBox(
                               width: width,
                               child: Stack(
