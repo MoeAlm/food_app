@@ -27,32 +27,32 @@ class FoodCubit extends Cubit<AppState> {
         img: 'assets/images/food/1.png',
         title: 'Shish Kebab',
         subTitle: 'shish kebab',
-        price: '\$12.99'),
+        price: 12.99),
     Food(
         img: 'assets/images/food/2.png',
         title: 'Pizza',
         subTitle: 'California-style',
-        price: '\$12.50'),
+        price: 12.50),
     Food(
         img: 'assets/images/food/3.png',
         title: 'Hamburger',
         subTitle: 'Hamburger',
-        price: '\$7.99'),
+        price: 7.99),
     Food(
         img: 'assets/images/food/4.png',
         title: 'Mozzarella sticks',
         subTitle: 'Mozzarella sticks',
-        price: '\$5.99'),
+        price: 5.99),
     Food(
         img: 'assets/images/food/5.png',
         title: 'Chicken nugget',
         subTitle: 'Chicken nugget',
-        price: '\$12.99'),
+        price: 12.99),
     Food(
         img: 'assets/images/food/6.png',
         title: 'Cheese fries',
         subTitle: 'Cheese fries',
-        price: '\$12.99'),
+        price: 12.99),
   ];
   List<CategoryModel> category = [
     CategoryModel(icon: 'assets/icons/category/dish.png', title: 'All'),

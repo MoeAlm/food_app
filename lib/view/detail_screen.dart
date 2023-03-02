@@ -23,7 +23,7 @@ class DetailsScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Vx.gray50,
             leading: IconButton(
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back_ios),
@@ -72,8 +72,8 @@ class DetailsScreen extends StatelessWidget {
                   children: [
                     Text(
                       model.title,
-                      style:
-                          const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     IconButton(
                         onPressed: () {},
@@ -133,15 +133,13 @@ class DetailsScreen extends StatelessWidget {
                             fontSize: 25, fontWeight: FontWeight.w400),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            model.price,
+                            '\$${cubit.priceCount <= 0 ? model.price : model.price * cubit.priceCount}',
                             style: TextStyle(
                                 fontSize: width * 0.07,
                                 fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: width * 0.4,
                           ),
                           Row(
                             children: [
@@ -182,7 +180,7 @@ class DetailsScreen extends StatelessWidget {
                             ],
                           ).pOnly(bottom: 12)
                         ],
-                      ),
+                      ).px12(),
                       Align(
                         alignment: Alignment.center,
                         child: SizedBox(

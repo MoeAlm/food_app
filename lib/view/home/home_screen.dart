@@ -161,7 +161,16 @@ class HomeScreen extends StatelessWidget {
                             width,
                             model: cubit.food[index],
                             onPressed: () => cubit.liked(),
-                            icon: cubit.isLiked? Icon(Icons.favorite, color: Colors.red, size: width * 0.09,): Icon(Icons.favorite_border, size: width * 0.09)
+                            icon: cubit.isLiked
+                                ? Icon(
+                                    Icons.favorite,
+                                    color: Colors.red,
+                                    size: width * 0.09,
+                                  )
+                                : Icon(
+                                    Icons.favorite_border,
+                                    size: width * 0.09,
+                                  ),
                           ).px(5),
                           onTap: () {
                             Navigator.push(

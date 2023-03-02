@@ -33,7 +33,7 @@ Widget foodItem(double height, double width, {required Food model, required Widg
               style: TextStyle(fontSize: width * 0.04, color: Colors.black45),
             ),
             Text(
-              model.price,
+              '\$${model.price}',
               style: const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
