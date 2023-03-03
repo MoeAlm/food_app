@@ -160,7 +160,10 @@ class HomeScreen extends StatelessWidget {
                             height,
                             width,
                             model: cubit.food[index],
-                            onPressed: () => cubit.liked(),
+                            onPressed: () {
+                              cubit.liked();
+                              cubit.likedIndex.add(cubit.food[index]);
+                            },
                             icon: cubit.isLiked
                                 ? Icon(
                                     Icons.favorite,

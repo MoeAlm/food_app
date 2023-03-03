@@ -6,6 +6,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
+import '../fav_food_screen.dart';
 import '../profile.dart';
 import 'drawer.dart';
 
@@ -48,11 +49,28 @@ class MainScreen extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const FavouriteFood();
+                      },
+                    ),
+                  );
+                },
+                icon: Icon(
+                  Icons.favorite_outline,
+                  size: width * 0.08,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
                   key.currentState?.openEndDrawer();
                 },
                 icon: Image.asset(
                   'assets/icons/menu.png',
-                  width: width * 0.09,
+                  width: width * 0.08,
+                  height: height * 0.04,
                   color: Theme.of(context).appBarTheme.foregroundColor,
                 ),
               ).px4()

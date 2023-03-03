@@ -99,4 +99,8 @@ class FoodCubit extends Cubit<AppState> {
     isLiked = !isLiked;
     emit(LikeState());
   }
+  void removeItem(index){
+    likedIndex.removeAt(index);
+    emit(RemoveFromFavState());
+  }
 }
