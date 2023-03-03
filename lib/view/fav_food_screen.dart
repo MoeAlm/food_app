@@ -57,34 +57,36 @@ class FavouriteFood extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.asset(
               model.img,
-              height: height * 0.35,
-              width: width * 0.35,
+              height: height * 0.3,
+              width: width * 0.3,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildText(width,
                     text: model.title,
-                    size: 0.07,
+                    size: 0.065,
                     color: Colors.black,
                     weight: FontWeight.w600),
                 buildText(width,
                     text: model.subTitle,
-                    size: 0.065,
-                    color: Colors.black,
+                    size: 0.05,
+                    color: Colors.black45,
                     weight: FontWeight.w600),
                 buildText(
                   width,
                   text: '\$${model.price}',
                   size: 0.08,
-                  color: Colors.black12,
+                  color: Colors.black45,
                   weight: FontWeight.w600,
                 ),
               ],
-            ).py12().px8(),
+            ).py12(),
             IconButton(
               onPressed: onPressed,
               icon: Icon(Icons.delete),
