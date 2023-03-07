@@ -43,12 +43,13 @@ class HomeScreen extends StatelessWidget {
                               child: Stack(
                                 children: [
                                   Positioned(
-                                      top: -40,
-                                      right: 0,
-                                      child: Image.asset(
-                                        'assets/images/food/banner.png',
-                                        width: width * 0.35,
-                                      ).opacity75()),
+                                    top: -40,
+                                    right: 0,
+                                    child: Image.asset(
+                                      'assets/images/food/banner.png',
+                                      width: width * 0.35,
+                                    ).opacity75(),
+                                  ),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/view/home/search_layout.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:badges/badges.dart' as badges;
 
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
@@ -47,6 +48,13 @@ class MainScreen extends StatelessWidget {
               ).px(6),
             ),
             actions: [
+              InkWell(
+                onTap: (){},
+                child: badges.Badge(
+                  badgeContent: Text('3'),
+                  child: Icon(Icons.shopping_cart_outlined, size: width * 0.08,),
+                ),
+              ),
               IconButton(
                 onPressed: () {
                   Navigator.push(
@@ -62,7 +70,7 @@ class MainScreen extends StatelessWidget {
                   Icons.favorite_outline,
                   size: width * 0.08,
                 ),
-              ),
+              ).pOnly(left: 8),
               IconButton(
                 onPressed: () {
                   key.currentState?.openEndDrawer();
@@ -73,7 +81,8 @@ class MainScreen extends StatelessWidget {
                   height: height * 0.04,
                   color: Theme.of(context).appBarTheme.foregroundColor,
                 ),
-              ).px4()
+              ).px4(),
+
             ],
           ),
           body: cubit.screens[cubit.currentIndex],
