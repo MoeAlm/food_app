@@ -9,7 +9,9 @@ import '../components/favourite_components.dart';
 import 'detail_screen.dart';
 
 class FavouriteFood extends StatelessWidget {
-  const FavouriteFood({Key? key}) : super(key: key);
+  final String text;
+
+  const FavouriteFood({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class FavouriteFood extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: buildText(width,
-                text: 'Favourite',
+                text: text,//'Favourite'*/,
                 size: 0.08,
                 color: Colors.black,
                 weight: FontWeight.w800),

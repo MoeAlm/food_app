@@ -46,7 +46,7 @@ Widget favouriteItem(double height, double width,
           ).py12(),
           IconButton(
             onPressed: onPressed,
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
           )
         ],
       ),

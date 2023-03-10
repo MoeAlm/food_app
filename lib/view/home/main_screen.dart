@@ -51,7 +51,7 @@ class MainScreen extends StatelessWidget {
               InkWell(
                 onTap: (){},
                 child: badges.Badge(
-                  badgeContent: Text('3'),
+                  badgeContent: Text('3', style: TextStyle(color: Colors.white),),
                   child: Icon(Icons.shopping_cart_outlined, size: width * 0.08,),
                 ),
               ),
@@ -61,7 +61,7 @@ class MainScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const FavouriteFood();
+                        return const FavouriteFood(text: 'Favourite',);
                       },
                     ),
                   );

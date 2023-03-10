@@ -33,7 +33,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   velocity_x: ^3.6.0
   google_fonts: ^4.0.3
-  animated_bottom_navigation_bar: ^1.1.0+1
+  animated_bottom_navigation_bar: ^1.2.0
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
   smooth_page_indicator: ^1.0.1
