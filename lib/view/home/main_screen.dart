@@ -7,7 +7,6 @@ import 'package:badges/badges.dart' as badges;
 
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
-import '../cart_screen.dart';
 import '../fav_food_screen.dart';
 import '../profile.dart';
 import 'drawer.dart';
@@ -50,20 +49,28 @@ class MainScreen extends StatelessWidget {
             ),
             actions: [
               InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const CartScreen();
+                        return ItemsScreen(
+                          text: 'Cart',
+                          list: cubit.cartItems,
+                        );
                       },
                     ),
                   );
-
                 },
                 child: badges.Badge(
-                  badgeContent: Text('${cubit.cartItems.length}', style: TextStyle(color: Colors.white),),
-                  child: Icon(Icons.shopping_cart_outlined, size: width * 0.08,),
+                  badgeContent: Text(
+                    '${cubit.cartItems.length}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  child: Icon(
+                    Icons.shopping_cart_outlined,
+                    size: width * 0.08,
+                  ),
                 ),
               ),
               IconButton(
@@ -72,7 +79,10 @@ class MainScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const FavouriteFood(text: 'Favourite',);
+                        return ItemsScreen(
+                          text: 'Favourite',
+                          list: cubit.likedItems,
+                        );
                       },
                     ),
                   );
@@ -93,7 +103,6 @@ class MainScreen extends StatelessWidget {
                   color: Theme.of(context).appBarTheme.foregroundColor,
                 ),
               ).px4(),
-
             ],
           ),
           body: cubit.screens[cubit.currentIndex],

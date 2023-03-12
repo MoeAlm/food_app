@@ -181,7 +181,7 @@ class HomeScreen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailsScreen(
-                                  model: cubit.food[index],
+                                  model: cubit.food[index], index: index,
                                 ),
                               ),
                             );

@@ -8,10 +8,11 @@ import 'package:velocity_x/velocity_x.dart';
 import '../components/favourite_components.dart';
 import 'detail_screen.dart';
 
-class FavouriteFood extends StatelessWidget {
+class ItemsScreen extends StatelessWidget {
   final String text;
+  final list;
 
-  const FavouriteFood({super.key, required this.text});
+  const ItemsScreen({super.key, required this.text, required this.list});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class FavouriteFood extends StatelessWidget {
             ),
           ),
           body: ListView.builder(
-            itemCount: cubit.likedItems.length,
+            itemCount: list.length,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: (){
@@ -45,14 +46,14 @@ class FavouriteFood extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailsScreen(
-                        model: cubit.food[index],
+                        model: list[index], index: index,
                       ),
                     ),
                   );
                 },
                 child: favouriteItem(height, width,
-                    model: cubit.likedItems[index], onPressed: () {
-                  cubit.removeItem(index, cubit.likedItems);
+                    model: list[index], onPressed: () {
+                  cubit.removeItem(index, list);
                 }).pOnly(top: 12).px12(),
               );
             },

@@ -102,6 +102,6 @@ class FoodCubit extends Cubit<AppState> {
   }
   void removeItem(index, item){
     item.removeAt(index);
-    emit(RemoveFromFavState());
+    emit(RemoveState());
   }
 }

@@ -8,8 +8,9 @@ import '../core/model/food_model.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Food model;
+  final int index;
 
-  const DetailsScreen({super.key, required this.model});
+  const DetailsScreen({super.key, required this.model, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -190,7 +191,8 @@ class DetailsScreen extends StatelessWidget {
                         child: SizedBox(
                           width: width * 0.75,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              cubit.cartItems.add(cubit.food[index]);                            },
                             style: OutlinedButton.styleFrom(
                                 backgroundColor: Colors.orange,
                                 foregroundColor: Colors.white),

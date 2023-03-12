@@ -14,4 +14,6 @@ class MinusItemChanges extends AppState{}
 
 class LikeState extends AppState{}
 
-class RemoveFromFavState extends AppState{}
+class RemoveState extends AppState{}
+
+class ItemCountState extends AppState{}

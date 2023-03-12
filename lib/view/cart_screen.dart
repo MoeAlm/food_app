@@ -45,7 +45,7 @@ class CartScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) =>
                           DetailsScreen(
-                            model: cubit.food[index],
+                            model: cubit.food[index], index: index,
                           ),
                     ),
                   );
