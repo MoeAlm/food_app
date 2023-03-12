@@ -37,7 +37,7 @@ class FavouriteFood extends StatelessWidget {
             ),
           ),
           body: ListView.builder(
-            itemCount: cubit.likedIndex.length,
+            itemCount: cubit.likedItems.length,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: (){
@@ -51,8 +51,8 @@ class FavouriteFood extends StatelessWidget {
                   );
                 },
                 child: favouriteItem(height, width,
-                    model: cubit.likedIndex[index], onPressed: () {
-                  cubit.removeItem(index);
+                    model: cubit.likedItems[index], onPressed: () {
+                  cubit.removeItem(index, cubit.likedItems);
                 }).pOnly(top: 12).px12(),
               );
             },

@@ -7,6 +7,7 @@ import 'package:badges/badges.dart' as badges;
 
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
+import '../cart_screen.dart';
 import '../fav_food_screen.dart';
 import '../profile.dart';
 import 'drawer.dart';
@@ -49,9 +50,19 @@ class MainScreen extends StatelessWidget {
             ),
             actions: [
               InkWell(
-                onTap: (){},
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const CartScreen();
+                      },
+                    ),
+                  );
+
+                },
                 child: badges.Badge(
-                  badgeContent: Text('3', style: TextStyle(color: Colors.white),),
+                  badgeContent: Text('${cubit.cartItems.length}', style: TextStyle(color: Colors.white),),
                   child: Icon(Icons.shopping_cart_outlined, size: width * 0.08,),
                 ),
               ),

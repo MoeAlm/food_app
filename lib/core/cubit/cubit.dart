@@ -15,7 +15,8 @@ class FoodCubit extends Cubit<AppState> {
   double ratingCount = 0;
   int priceCount = 1;
   bool isLiked = false;
-  var likedIndex = [];
+  var likedItems = [];
+  var cartItems = [];
 
   PageController pageController = PageController();
 
@@ -99,8 +100,8 @@ class FoodCubit extends Cubit<AppState> {
     isLiked = !isLiked;
     emit(LikeState());
   }
-  void removeItem(index){
-    likedIndex.removeAt(index);
+  void removeItem(index, item){
+    item.removeAt(index);
     emit(RemoveFromFavState());
   }
 }

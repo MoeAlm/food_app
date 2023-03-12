@@ -34,7 +34,8 @@ class MyApp extends StatelessWidget {
                 elevation: 0,
                 systemOverlayStyle: SystemUiOverlayStyle(
                     statusBarColor: Colors.transparent,
-                    statusBarIconBrightness: Brightness.dark),
+                    statusBarIconBrightness: Brightness.dark,
+                ),
             ),
             scaffoldBackgroundColor: Colors.white,
             textTheme: GoogleFonts.albertSansTextTheme(

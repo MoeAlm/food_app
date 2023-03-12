@@ -195,7 +195,7 @@ class DetailsScreen extends StatelessWidget {
                                 backgroundColor: Colors.orange,
                                 foregroundColor: Colors.white),
                             child: const Text(
-                              'Add To Card',
+                              'Add To Cart',
                               style: TextStyle(fontSize: 23),
                             ),
                           ),
