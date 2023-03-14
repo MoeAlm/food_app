@@ -55,31 +55,6 @@ class MainScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) {
                         return ItemsScreen(
-                          text: 'Cart',
-                          list: cubit.cartItems,
-                        );
-                      },
-                    ),
-                  );
-                },
-                child: badges.Badge(
-                  badgeContent: Text(
-                    '${cubit.cartItems.length}',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  child: Icon(
-                    Icons.shopping_cart_outlined,
-                    size: width * 0.08,
-                  ),
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return ItemsScreen(
                           text: 'Favourite',
                           list: cubit.likedItems,
                         );
@@ -87,11 +62,17 @@ class MainScreen extends StatelessWidget {
                     ),
                   );
                 },
-                icon: Icon(
-                  Icons.favorite_outline,
-                  size: width * 0.08,
+                child: badges.Badge(
+                  badgeContent: Text(
+                    '${cubit.count}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  child: Icon(
+                    Icons.favorite_border_outlined,
+                    size: width * 0.09,
+                  ),
                 ),
-              ).pOnly(left: 8),
+              ).pOnly(right: 10),
               IconButton(
                 onPressed: () {
                   key.currentState?.openEndDrawer();

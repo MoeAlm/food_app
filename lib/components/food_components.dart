@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../core/model/food_model.dart';
 
-Widget foodItem(double height, double width, {required Food model, required Widget icon,required Function() onPressed}) {
+Widget foodItem(double height, double width,
+    {required Food model,
+    required Widget icon,
+    required Function() onPressed}) {
   return Card(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-    color: Colors.grey.shade200,
-    elevation: 0,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30),
+    ),
+    color: Colors.white, //Colors.grey.shade200,
+    elevation: 0.5,
     child: Stack(
       alignment: Alignment.center,
       children: [
@@ -29,7 +34,8 @@ Widget foodItem(double height, double width, {required Food model, required Widg
             ).pOnly(top: 16),
             Text(
               model.title,
-              style: TextStyle(fontSize: width * 0.055, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: width * 0.055, fontWeight: FontWeight.bold),
             ),
             Text(
               model.subTitle,
@@ -50,8 +56,8 @@ Widget foodItem(double height, double width, {required Food model, required Widg
           child: IconButton(
             onPressed: onPressed,
             icon: icon,
-            ),
           ),
+        ),
       ],
     ),
   ).py4();

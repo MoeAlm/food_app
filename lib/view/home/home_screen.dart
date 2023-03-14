@@ -165,7 +165,7 @@ class HomeScreen extends StatelessWidget {
                               cubit.liked();
                               cubit.likedItems.add(cubit.food[index]);
                             },
-                            icon: cubit.isLiked
+                            icon: cubit.isLiked/*cubit.isLiked*/
                                 ? Icon(
                                     Icons.favorite,
                                     color: Colors.red,

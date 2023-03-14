@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/core/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_api/view/home/home_screen.dart';
+import '../../view/cart_screen.dart';
 import '../model/category_model.dart';
 import '../model/food_model.dart';
 
@@ -14,6 +15,7 @@ class FoodCubit extends Cubit<AppState> {
   int indexOfPageView = 0;
   double ratingCount = 0;
   int priceCount = 1;
+  int count = 0;
   bool isLiked = false;
   var likedItems = [];
   var cartItems = [];
@@ -66,7 +68,7 @@ class FoodCubit extends Cubit<AppState> {
   ];
   List screens = [
     HomeScreen(),
-    Scaffold()
+    CartScreen()
   ];
 
   void changeIndex(index) {
@@ -103,5 +105,10 @@ class FoodCubit extends Cubit<AppState> {
   void removeItem(index, item){
     item.removeAt(index);
     emit(RemoveState());
+  }
+  itemNumber(){
+    emit(ItemCountState());
+    count =  cartItems.length;
+    emit(ItemCountState());
   }
 }
