@@ -54,6 +54,36 @@ class MainScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
+                        return Scaffold(
+                          appBar: AppBar(
+                            leading: IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(Icons.arrow_back_ios)),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+                child: badges.Badge(
+                  badgeContent: Text(
+                    '${cubit.count}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  child: Icon(
+                    Icons.message_outlined,
+                    size: width * 0.09,
+                  ),
+                ),
+              ).pOnly(right: 10),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
                         return ItemsScreen(
                           text: 'Favourite',
                           list: cubit.likedItems,
