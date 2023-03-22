@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app_api/view/chat_screen.dart';
 import 'package:food_app_api/view/home/search_layout.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
@@ -54,15 +55,7 @@ class MainScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Scaffold(
-                          appBar: AppBar(
-                            leading: IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: const Icon(Icons.arrow_back_ios)),
-                          ),
-                        );
+                        return ChatScreen();
                       },
                     ),
                   );
