@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:food_app_api/view/home/main_screen.dart';
+import 'package:food_app_api/view/register/register_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'core/cubit/bloc_observer.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
               color: Colors.black54,
             ),
           ),
-          home: const MainScreen(),
+          home: const RegisterScreen(),
         );
       }),
     );
