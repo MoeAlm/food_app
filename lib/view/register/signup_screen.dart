@@ -1,10 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_api/components/text_components.dart';
+import 'package:food_app_api/view/home/home_screen.dart';
+import 'package:food_app_api/view/home/main_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../core/components/textformfield.dart';
 import '../../core/constants/constant.dart';
+import '../../helper/show_snackbar.dart';
 import 'login_screen.dart';
 
 class SignUp extends StatefulWidget {
@@ -90,6 +94,7 @@ class _SignUpState extends State<SignUp> {
                           ? const Icon(Icons.visibility)
                           : const Icon(Icons.visibility_off),
                     ),
+                    obscureText: isVisible,
                     onChanged: (text) {
                       password = text;
                     },
@@ -104,8 +109,34 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(
                           width: width * 0.5,
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               //اوبجكت لـ FirebaseAuth
+                              if (formKey.currentState!.validate()) {
+                                setState(() {
+                                  isLoading = true;
+                                });
+                                try {
+                                  await registerUser();
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return const MainScreen();
+                                  }));
+                                } on FirebaseAuthException catch (e) {
+                                  if (e.code == "email-already-in-use") {
+                                    showSnackBar(context,
+                                        text: 'Email is Already exit');
+                                  } else if (e.code == "weak-password") {
+                                    showSnackBar(context,
+                                        text: 'Weak password');
+                                  }
+                                } catch (e) {
+                                  showSnackBar(context,
+                                      text: 'There was an error');
+                                }
+                                setState(() {
+                                  isLoading = false;
+                                });
+                              }
                             },
                             style: OutlinedButton.styleFrom(
                                 backgroundColor: kPrimeryColor,
@@ -172,5 +203,10 @@ class _SignUpState extends State<SignUp> {
         ).p(16),
       ),
     );
+  }
+
+  Future<void> registerUser() async {
+    await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email!, password: password!);
   }
 }

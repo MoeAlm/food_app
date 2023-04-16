@@ -17,6 +17,7 @@ class FoodCubit extends Cubit<AppState> {
   int priceCount = 1;
   int count = 0;
   bool isLiked = false;
+  bool isVisible = true;
   var likedItems = [];
   var cartItems = [];
 
@@ -110,5 +111,9 @@ class FoodCubit extends Cubit<AppState> {
     emit(ItemCountState());
     count =  cartItems.length;
     emit(ItemCountState());
+  }
+  void convertValue(){
+    isVisible = !isVisible;
+    emit(ChangeState());
   }
 }
