@@ -45,7 +45,7 @@ class RegisterScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LogIn()));
+                        MaterialPageRoute(builder: (context) => const LogIn()));
                   },
                   style: OutlinedButton.styleFrom(
                       backgroundColor: kPrimeryColor,
@@ -61,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
                 child: OutlinedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUp()));
+                        MaterialPageRoute(builder: (context) => const SignUp()));
                   },
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.black,

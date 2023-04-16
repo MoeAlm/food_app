@@ -9,7 +9,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -59,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
             ).py(16),
             buildText(
               width,
-              text: 'Mohammed Mustafa Almazouzi',
+              text: 'Mohammed Almazouzi',
               size: 0.06,
               color: Colors.black,
               weight: FontWeight.bold,
@@ -124,13 +123,13 @@ class ProfileScreen extends StatelessWidget {
                   width: width * 0.7,
                   child: ElevatedButton(
                     onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.orange
+                    ),
                     child: Text(
                       'Edit Profile',
                       style: TextStyle(
                           fontSize: width * 0.05, color: Colors.white),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: Colors.orange
                     ),
                   ),
                 ),

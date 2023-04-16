@@ -21,7 +21,7 @@ Widget pageIndicator(double width, double height) {
             dotColor: Vx.gray200),
         onDotClicked: (value) {
           cubit.pageController.animateToPage(value,
-              duration: Duration(milliseconds: 500), curve: Curves.ease);
+              duration: const Duration(milliseconds: 500), curve: Curves.ease);
         },
       );
     },

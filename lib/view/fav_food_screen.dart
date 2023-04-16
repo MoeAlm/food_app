@@ -10,7 +10,7 @@ import 'detail_screen.dart';
 
 class ItemsScreen extends StatelessWidget {
   final String text;
-  final list;
+  final List list;
 
   const ItemsScreen({super.key, required this.text, required this.list});
 

@@ -8,7 +8,6 @@ import '../../components/text_components.dart';
 import '../../core/components/textformfield.dart';
 import '../../core/constants/constant.dart';
 import '../../helper/show_snackbar.dart';
-import '../home/home_screen.dart';
 import '../home/main_screen.dart';
 
 class LogIn extends StatefulWidget {
@@ -188,7 +187,7 @@ class _LogInState extends State<LogIn> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) {
-                              return SignUp();
+                              return const SignUp();
                             }),
                           );
                         },
