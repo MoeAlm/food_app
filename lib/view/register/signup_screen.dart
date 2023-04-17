@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_api/components/text_components.dart';
-import 'package:food_app_api/view/home/home_screen.dart';
 import 'package:food_app_api/view/home/main_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -30,7 +29,6 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(

@@ -65,9 +65,10 @@ class MainScreen extends StatelessWidget {
                     '${cubit.count}',
                     style: const TextStyle(color: Colors.white),
                   ),
-                  child: Icon(
-                    Icons.message_outlined,
-                    size: width * 0.09,
+                  child: Image.asset(
+                    'assets/icons/chat.png',
+                    width: width * 0.085,
+                    color: Colors.black87,
                   ),
                 ),
               ).pOnly(right: 10),
@@ -90,9 +91,10 @@ class MainScreen extends StatelessWidget {
                     '${cubit.count}',
                     style: const TextStyle(color: Colors.white),
                   ),
-                  child: Icon(
-                    Icons.favorite_border_outlined,
-                    size: width * 0.09,
+                  child: Image.asset(
+                    'assets/icons/heart.png',
+                    width: width * 0.08,
+                    color: Colors.black87,
                   ),
                 ),
               ).pOnly(right: 10),
@@ -118,7 +120,9 @@ class MainScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const SearchLayout()));
+                      builder: (context) => const SearchLayout(),
+                  ),
+              );
             },
             backgroundColor: Colors.orange,
             child: Image.asset(

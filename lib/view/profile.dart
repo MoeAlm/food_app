@@ -17,7 +17,10 @@ class ProfileScreen extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black,),
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.black,
+          ),
         ),
         title: Text(
           'Profile',
@@ -26,23 +29,32 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           PopupMenuButton(
-            color: Colors.black,
-          itemBuilder: (context) {
-            return const [
-              PopupMenuItem(
-                value: '/hello',
-                child: Text("Hello", style: TextStyle(color: Colors.white70),),
-              ),
-              PopupMenuItem(
-                value: '/about',
-                child: Text("About", style: TextStyle(color: Colors.white70),),
-              ),
-              PopupMenuItem(
-                value: '/contact',
-                child: Text("Contact", style: TextStyle(color: Colors.white70),),
-              )
-            ];
-          })
+              color: Colors.black,
+              itemBuilder: (context) {
+                return const [
+                  PopupMenuItem(
+                    value: '/hello',
+                    child: Text(
+                      "Hello",
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: '/about',
+                    child: Text(
+                      "About",
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: '/contact',
+                    child: Text(
+                      "Contact",
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  )
+                ];
+              })
         ],
       ),
       body: Center(
@@ -52,8 +64,10 @@ class ProfileScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(90),
               child: CircleAvatar(
                 radius: width * 0.2,
-                child: Hero(tag: 'profile',
-                child: Image.asset('assets/images/profile.jpg')),
+                child: Hero(
+                  tag: 'profile',
+                  child: Image.asset('assets/images/profile.jpg'),
+                ),
               ),
             ).py(16),
             buildText(
@@ -124,8 +138,7 @@ class ProfileScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
-                      backgroundColor: Colors.orange
-                    ),
+                        backgroundColor: Colors.orange),
                     child: Text(
                       'Edit Profile',
                       style: TextStyle(
@@ -136,9 +149,10 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   child: IconButton(
                     onPressed: () {},
-                    icon: const Icon(
-                      Icons.message_outlined,
-                      color: Colors.black,
+                    icon: Image.asset(
+                      'assets/icons/chat.png',
+                      width: width * 0.11,
+                      color: Colors.black54,
                     ),
                   ),
                 )
@@ -151,7 +165,10 @@ class ProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 buildText(width,
-                    text: 'Orders', size: 0.06, color: Colors.black45, weight: FontWeight.bold),
+                    text: 'Orders',
+                    size: 0.06,
+                    color: Colors.black45,
+                    weight: FontWeight.bold),
                 TextButton(
                   onPressed: () {},
                   child: buildText(width,

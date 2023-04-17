@@ -26,6 +26,9 @@ class DetailsScreen extends StatelessWidget {
             leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
+                cubit.ratingCount = 0;
+                cubit.priceCount = 1;
+
               },
               icon: const Icon(Icons.arrow_back_ios),
             ),
@@ -46,7 +49,9 @@ class DetailsScreen extends StatelessWidget {
                           image: AssetImage(model.img),
                         ),
                         borderRadius: const BorderRadiusDirectional.vertical(
-                            bottom: Radius.circular(20))),
+                            bottom: Radius.circular(20),
+                        ),
+                    ),
                   ),
                 ),
                 Row(
