@@ -68,8 +68,8 @@ class FoodCubit extends Cubit<AppState> {
     CategoryModel(icon: 'assets/icons/category/spaghetti.png', title: 'Meals'),
   ];
   List screens = [
-    HomeScreen(),
-    CartScreen()
+    const HomeScreen(),
+    const CartScreen()
   ];
 
   void changeIndex(index) {
