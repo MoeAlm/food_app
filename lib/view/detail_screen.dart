@@ -26,9 +26,6 @@ class DetailsScreen extends StatelessWidget {
             leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
-                cubit.ratingCount = 0;
-                cubit.priceCount = 1;
-
               },
               icon: const Icon(Icons.arrow_back_ios),
             ),
@@ -44,13 +41,13 @@ class DetailsScreen extends StatelessWidget {
                     height: height * 0.33,
                     width: width,
                     decoration: BoxDecoration(
-                        color: Vx.gray50,
-                        image: DecorationImage(
-                          image: AssetImage(model.img),
-                        ),
-                        borderRadius: const BorderRadiusDirectional.vertical(
-                            bottom: Radius.circular(20),
-                        ),
+                      color: Vx.gray50,
+                      image: DecorationImage(
+                        image: AssetImage(model.img),
+                      ),
+                      borderRadius: const BorderRadiusDirectional.vertical(
+                        bottom: Radius.circular(20),
+                      ),
                     ),
                   ),
                 ),
@@ -177,9 +174,8 @@ class DetailsScreen extends StatelessWidget {
                                   cubit.minusCount();
                                 },
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(60),
-                                    side:
-                                        const BorderSide(color: Colors.orange),
+                                  borderRadius: BorderRadius.circular(60),
+                                  side: const BorderSide(color: Colors.orange),
                                 ),
                                 backgroundColor: Colors.transparent,
                                 foregroundColor: Colors.orange,
@@ -197,7 +193,8 @@ class DetailsScreen extends StatelessWidget {
                           width: width * 0.75,
                           child: ElevatedButton(
                             onPressed: () {
-                              cubit.cartItems.add(cubit.food[index]);                            },
+                              cubit.cartItems.add(cubit.food[index]);
+                            },
                             style: OutlinedButton.styleFrom(
                                 backgroundColor: Colors.orange,
                                 foregroundColor: Colors.white),

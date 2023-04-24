@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/core/cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,8 @@ class FoodCubit extends Cubit<AppState> {
   bool isVisible = true;
   var likedItems = [];
   var cartItems = [];
+  String? email;
+  String? password;
 
   PageController pageController = PageController();
 
@@ -67,10 +70,7 @@ class FoodCubit extends Cubit<AppState> {
     CategoryModel(icon: 'assets/icons/category/cake.png', title: 'Cakes'),
     CategoryModel(icon: 'assets/icons/category/spaghetti.png', title: 'Meals'),
   ];
-  List screens = [
-    const HomeScreen(),
-    const CartScreen()
-  ];
+  List screens = [const HomeScreen(), const CartScreen()];
 
   void changeIndex(index) {
     currentIndex = index;
@@ -99,21 +99,34 @@ class FoodCubit extends Cubit<AppState> {
     }
     emit(MinusItemChanges());
   }
-  void liked(){
+
+  void liked() {
     isLiked = !isLiked;
     emit(LikeState());
   }
-  void removeItem(index, item){
+
+  void removeItem(index, item) {
     item.removeAt(index);
     emit(RemoveState());
   }
-  itemNumber(){
+
+  itemNumber() {
     emit(ItemCountState());
-    count =  cartItems.length;
+    count = cartItems.length;
     emit(ItemCountState());
   }
-  void convertValue(){
+
+  void convertValue() {
     isVisible = !isVisible;
     emit(ChangeState());
+  }
+  Future<void> loginUser() async {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email!, password: password!);
+  }
+
+  Future<void> registerUser() async {
+    await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email!, password: password!);
   }
 }

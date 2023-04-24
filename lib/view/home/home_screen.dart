@@ -165,7 +165,7 @@ class HomeScreen extends StatelessWidget {
                               cubit.liked();
                               cubit.likedItems.add(cubit.food[index]);
                             },
-                            icon: cubit.isLiked/*cubit.isLiked*/
+                            icon: cubit.isLiked
                                 ? Icon(
                                     Icons.favorite,
                                     color: Colors.red,
@@ -177,7 +177,9 @@ class HomeScreen extends StatelessWidget {
                                   ),
                           ).px(5),
                           onTap: () {
-                            Navigator.push(
+                          cubit.priceCount = 1;
+                          cubit.ratingCount = 0;
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailsScreen(
