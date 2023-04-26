@@ -21,11 +21,17 @@ class FoodCubit extends Cubit<AppState> {
   bool isVisible = true;
   var likedItems = [];
   var cartItems = [];
+  ////////////////////////////////////////
   String? email;
   String? password;
-
+  ////////////////////////////////////////
+  var user = FirebaseAuth.instance.currentUser;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController userController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  ////////////////////////////////////////
   PageController pageController = PageController();
-
+  ////////////////////////////////////////
   List<IconData> icons = [
     Icons.home_outlined,
     Icons.shopping_bag_outlined,
@@ -71,27 +77,27 @@ class FoodCubit extends Cubit<AppState> {
     CategoryModel(icon: 'assets/icons/category/spaghetti.png', title: 'Meals'),
   ];
   List screens = [const HomeScreen(), const CartScreen()];
-
+  ////////////////////////////////////////
   void changeIndex(index) {
     currentIndex = index;
     emit(BottomNavChanges());
   }
-
+  ////////////////////////////////////////
   void changeIndexOfCategories(index) {
     indexOfCategories = index;
     emit(CategoryChanges());
   }
-
+  ////////////////////////////////////////
   void ratingBarChange(value) {
     ratingCount = value;
     emit(RatingBarChanges());
   }
-
+  ////////////////////////////////////////
   void plusCount() {
     priceCount++;
     emit(PlusItemChanges());
   }
-
+  ////////////////////////////////////////
   void minusCount() {
     if (priceCount > 0) {
       priceCount--;
@@ -99,32 +105,33 @@ class FoodCubit extends Cubit<AppState> {
     }
     emit(MinusItemChanges());
   }
-
+  ////////////////////////////////////////
   void liked() {
     isLiked = !isLiked;
     emit(LikeState());
   }
-
+  ////////////////////////////////////////
   void removeItem(index, item) {
     item.removeAt(index);
     emit(RemoveState());
   }
-
+  ////////////////////////////////////////
   itemNumber() {
     emit(ItemCountState());
     count = cartItems.length;
     emit(ItemCountState());
   }
-
+  ////////////////////////////////////////
   void convertValue() {
     isVisible = !isVisible;
     emit(ChangeState());
   }
+  ////////////////////////////////////////
   Future<void> loginUser() async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email!, password: password!);
   }
-
+  ////////////////////////////////////////
   Future<void> registerUser() async {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email!, password: password!);

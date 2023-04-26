@@ -19,3 +19,5 @@ class ChangeState extends AppState{}
 class RemoveState extends AppState{}
 
 class ItemCountState extends AppState{}
+
+class UpdateProfileState extends AppState{}

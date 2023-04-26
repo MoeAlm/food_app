@@ -9,7 +9,7 @@ import 'package:badges/badges.dart' as badges;
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
 import '../fav_food_screen.dart';
-import '../profile.dart';
+import '../profile/profile.dart';
 import 'drawer.dart';
 
 class MainScreen extends StatelessWidget {
