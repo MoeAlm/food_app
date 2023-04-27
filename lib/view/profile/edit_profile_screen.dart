@@ -54,9 +54,25 @@ class EditProfileScreen extends StatelessWidget {
                   SizedBox(
                     height: height * 0.05,
                   ),
-                  CircleAvatar(
-                    radius: 80,
-                    child: Image.asset('assets/images/profile.jpg'),
+                  Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 80,
+                        child: Image.asset('assets/images/profile.jpg'),
+                      ),
+                      Positioned(
+                        top: width * 0.29,
+                        left: width * 0.26,
+                        child: CircleAvatar(
+                          backgroundColor: kPrimeryColor,
+                          radius: width * 0.04,
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.mode_edit_outline_outlined, color: Colors.white, size: width * 0.04,),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   buildListTile(width, height,
                       text: 'Full Name',
@@ -95,8 +111,9 @@ class EditProfileScreen extends StatelessWidget {
                         width: width * 0.35,
                         child: ElevatedButton(
                           onPressed: () {
-                            cubit.user
-                                ?.updateDisplayName(cubit.nameController.text);
+                            cubit.name = cubit.nameController.text;
+                            cubit.updateName();
+                            Navigator.pop(context);
                             //cubit.user?.updatePassword(_passwordController.text);
                           },
                           style: OutlinedButton.styleFrom(

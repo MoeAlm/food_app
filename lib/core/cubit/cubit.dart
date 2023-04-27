@@ -24,6 +24,7 @@ class FoodCubit extends Cubit<AppState> {
   ////////////////////////////////////////
   String? email;
   String? password;
+  String? name;
   ////////////////////////////////////////
   var user = FirebaseAuth.instance.currentUser;
   TextEditingController nameController = TextEditingController();
@@ -135,5 +136,9 @@ class FoodCubit extends Cubit<AppState> {
   Future<void> registerUser() async {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email!, password: password!);
+  }
+  void updateName(){
+    user?.updateDisplayName(name);
+    emit(UpdateProfileState());
   }
 }
