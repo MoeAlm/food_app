@@ -28,7 +28,7 @@ class CartScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailsScreen(
-                        model: cubit.food[index],
+                        model: cubit.food[cubit.cartIndex[index]],
                         index: index,
                       ),
                     ),
@@ -37,6 +37,7 @@ class CartScreen extends StatelessWidget {
                 child: favouriteItem(height, width,
                     model: cubit.cartItems[index], onPressed: () {
                   cubit.removeItem(index, cubit.cartItems);
+                  cubit.cartIndex.removeAt(index);
                 }).pOnly(top: 12).px12(),
               );
             },

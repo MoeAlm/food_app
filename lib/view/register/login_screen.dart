@@ -70,11 +70,11 @@ class _LogInState extends State<LogIn> {
                         'Welcome back!',
                         style: TextStyle(
                             fontSize: width * 0.09, fontWeight: FontWeight.bold),
-                      ),
+                      ).pOnly(bottom: height * 0.01),
                       Text(
                         'Sign in to continue',
                         style: TextStyle(
-                            fontSize: width * 0.04, color: Colors.black54),
+                            fontSize: width * 0.045, color: Colors.black54),
                       ).pOnly(bottom: height * 0.08),
                       defaultTextFormField(
                         label: 'Username',

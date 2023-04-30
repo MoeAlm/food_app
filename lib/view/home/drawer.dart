@@ -25,11 +25,24 @@ class MyDrawer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(90),
                   child: CircleAvatar(
                     radius: width * 0.12,
-                    child: Image.asset('assets/images/profile.jpg', width: width * 0.5, height: height * 0.6,),
+                    child: Image.asset(
+                      'assets/images/profile.jpg',
+                      width: width * 0.5,
+                      height: height * 0.6,
+                    ),
                   ),
                 ).py12(),
-                buildText(width, text: 'Mohammed Almazouzi', size: 0.06, color: Colors.black54, weight: FontWeight.w700),
-                buildText(width, text: 'example@gmail.com', size: 0.047, color: Colors.black54).opacity50().pOnly(top: 2),
+                buildText(width,
+                    text: 'Mohammed Almazouzi',
+                    size: 0.06,
+                    color: Colors.black54,
+                    weight: FontWeight.w700),
+                buildText(width,
+                        text: 'example@gmail.com',
+                        size: 0.047,
+                        color: Colors.black54)
+                    .opacity50()
+                    .pOnly(top: 2),
               ],
             ).p(20),
           ),

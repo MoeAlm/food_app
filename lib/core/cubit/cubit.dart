@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/core/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_api/view/home/home_screen.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../../view/cart_screen.dart';
 import '../model/category_model.dart';
 import '../model/food_model.dart';
@@ -21,6 +23,7 @@ class FoodCubit extends Cubit<AppState> {
   bool isVisible = true;
   var likedItems = [];
   var cartItems = [];
+  var cartIndex = [];
   ////////////////////////////////////////
   String? email;
   String? password;
@@ -30,8 +33,8 @@ class FoodCubit extends Cubit<AppState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  ////////////////////////////////////////
   PageController pageController = PageController();
+  ImagePicker imagePicker = ImagePicker();
   ////////////////////////////////////////
   List<IconData> icons = [
     Icons.home_outlined,
@@ -140,5 +143,40 @@ class FoodCubit extends Cubit<AppState> {
   void updateName(){
     user?.updateDisplayName(name);
     emit(UpdateProfileState());
+  }
+  changeImage(image){
+
+  }
+  ////////////////////////////////////////
+  Future selectPhoto(context) async {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.camera),
+                  title: const Text('Camera'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    imagePicker.pickImage(source: ImageSource.camera);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.photo),
+                  title: const Text('Gellary'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    imagePicker.pickImage(source: ImageSource.gallery);
+                  },
+                ),
+              ],
+            ).p8(),
+          );
+        });
   }
 }

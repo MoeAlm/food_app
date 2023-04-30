@@ -4,19 +4,21 @@ import 'package:food_app_api/core/cubit/cubit.dart';
 import 'package:food_app_api/core/cubit/states.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../components/favourite_components.dart';
 import '../../components/text_components.dart';
+import '../detail_screen.dart';
 import 'edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return BlocConsumer<FoodCubit, AppState>(
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, state) {
-        var cubit= FoodCubit.get(context);
+        var cubit = FoodCubit.get(context);
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -147,7 +149,8 @@ class ProfileScreen extends StatelessWidget {
                       width: width * 0.7,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
                             return EditProfileScreen();
                           }));
                         },
@@ -192,6 +195,30 @@ class ProfileScreen extends StatelessWidget {
                     )
                   ],
                 ).px12(),
+                SizedBox(
+                  height: height * 0.311,
+                  child: ListView.builder(
+                      itemCount: cubit.cartItems.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailsScreen(
+                                  model: cubit.food[index],
+                                  index: index,
+                                ),
+                              ),
+                            );
+                          },
+                          child: favouriteItem(height, width,
+                              model: cubit.cartItems[index], onPressed: () {
+                            cubit.removeItem(index, cubit.cartItems);
+                          }).pOnly(top: 12).px12(),
+                        );
+                      }),
+                )
               ],
             ),
           ),

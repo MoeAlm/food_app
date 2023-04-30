@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:food_app_api/core/constants/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../core/cubit/cubit.dart';
 import '../core/cubit/states.dart';
@@ -157,7 +158,8 @@ class DetailsScreen extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(60),
                                     side:
-                                        const BorderSide(color: Colors.orange)),
+                                        const BorderSide(color: Colors.orange),
+                                ),
                                 backgroundColor: Colors.transparent,
                                 foregroundColor: Colors.orange,
                                 splashColor: Colors.orange,
@@ -175,11 +177,11 @@ class DetailsScreen extends StatelessWidget {
                                 },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(60),
-                                  side: const BorderSide(color: Colors.orange),
+                                  side: BorderSide(color: kPrimeryColor),
                                 ),
                                 backgroundColor: Colors.transparent,
-                                foregroundColor: Colors.orange,
-                                splashColor: Colors.orange,
+                                foregroundColor: kPrimeryColor,
+                                splashColor: kPrimeryColor,
                                 elevation: 0.0,
                                 child: const Icon(Icons.remove),
                               ),
@@ -194,9 +196,10 @@ class DetailsScreen extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               cubit.cartItems.add(cubit.food[index]);
+                              cubit.cartIndex.add(index);
                             },
                             style: OutlinedButton.styleFrom(
-                                backgroundColor: Colors.orange,
+                                backgroundColor: kPrimeryColor,
                                 foregroundColor: Colors.white),
                             child: const Text(
                               'Add To Cart',

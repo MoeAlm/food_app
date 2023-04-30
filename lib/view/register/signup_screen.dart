@@ -71,11 +71,11 @@ class _SignUpState extends State<SignUp> {
                           style: TextStyle(
                               fontSize: width * 0.09,
                               fontWeight: FontWeight.bold),
-                        ),
+                        ).pOnly(bottom: width * 0.01),
                         Text(
-                          'And talk with your friends from anywhere!',
+                          'And find food near your!',
                           style: TextStyle(
-                              fontSize: width * 0.04, color: Colors.black54),
+                              fontSize: width * 0.045, color: Colors.black54),
                         ).pOnly(bottom: height * 0.08),
                         defaultTextFormField(
                           label: 'Username',
