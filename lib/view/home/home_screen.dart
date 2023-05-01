@@ -7,6 +7,7 @@ import '../../components/category_components.dart';
 import '../../components/food_components.dart';
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
+import '../view_all_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -144,7 +145,12 @@ class HomeScreen extends StatelessWidget {
                           style: TextStyle(
                               fontSize: width * 0.05, color: Colors.blue),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const ViewAll();
+                          }));
+                        },
                       ),
                     ],
                   ).px16().pOnly(top: 8, bottom: 12),
@@ -177,13 +183,14 @@ class HomeScreen extends StatelessWidget {
                                   ),
                           ).px(5),
                           onTap: () {
-                          cubit.priceCount = 1;
-                          cubit.ratingCount = 0;
-                          Navigator.push(
+                            cubit.priceCount = 1;
+                            cubit.ratingCount = 0;
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailsScreen(
-                                  model: cubit.food[index], index: index,
+                                  model: cubit.food[index],
+                                  index: index,
                                 ),
                               ),
                             );

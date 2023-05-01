@@ -64,8 +64,8 @@ class EditProfileScreen extends StatelessWidget {
                           Image.asset(imageUrl ?? 'assets/images/profile.jpg'),
                     ),
                     Positioned(
-                      top: width * 0.29,
-                      left: width * 0.26,
+                      top: width * 0.32,
+                      left: width * 0.29,
                       child: CircleAvatar(
                         backgroundColor: kPrimeryColor,
                         radius: width * 0.04,
