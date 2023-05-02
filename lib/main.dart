@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/firebase_options.dart';
+import 'package:food_app_api/view/auth/register_screen.dart';
 import 'package:food_app_api/view/home/main_screen.dart';
 
-import 'package:food_app_api/view/register/register_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'core/cubit/bloc_observer.dart';
 import 'core/cubit/cubit.dart';
 import 'core/cubit/states.dart';
-import 'helper/shared_prefrences.dart';
+import 'helper/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

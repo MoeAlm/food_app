@@ -10,7 +10,7 @@ import '../../core/components/textformfield.dart';
 import '../../core/constants/constant.dart';
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
-import '../../helper/shared_prefrences.dart';
+import '../../helper/shared_preferences.dart';
 import '../../helper/show_snackbar.dart';
 import 'login_screen.dart';
 

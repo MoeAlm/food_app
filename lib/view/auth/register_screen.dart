@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_api/components/text_components.dart';
-import 'package:food_app_api/view/register/login_screen.dart';
-import 'package:food_app_api/view/register/signup_screen.dart';
+import 'package:food_app_api/view/auth/signup_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../core/constants/constant.dart';
+import 'login_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -24,14 +25,20 @@ class RegisterScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Image.asset('assets/images/food_register.png').p32(),
-          buildText(
-            width,
-            text: 'Hello!',
-            size: 0.09,
-            color: Colors.black,
-            weight: FontWeight.bold,
+          Image.asset('assets/images/food_register.png')
+              .pSymmetric(v: 40, h: 64),
+          Text(
+            'Hello!',
+            style: GoogleFonts.dancingScript(
+                fontSize: width * 0.17, fontWeight: FontWeight.bold),
           ),
+          // buildText(
+          //   width,
+          //   text: 'Hello!',
+          //   size: 0.09,
+          //   color: Colors.black,
+          //   weight: FontWeight.bold,
+          // ),
           const Text(
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
             'sed do eiusmod tempor incididunt',
@@ -60,8 +67,10 @@ class RegisterScreen extends StatelessWidget {
                 width: width * 0.35,
                 child: OutlinedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const SignUp()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignUp()));
                   },
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.black,

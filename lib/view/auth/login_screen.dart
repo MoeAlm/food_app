@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/core/cubit/cubit.dart';
 import 'package:food_app_api/core/cubit/states.dart';
-import 'package:food_app_api/view/register/signup_screen.dart';
+import 'package:food_app_api/view/auth/signup_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../components/text_components.dart';
 import '../../core/components/textformfield.dart';
 import '../../core/constants/constant.dart';
-import '../../helper/shared_prefrences.dart';
+import '../../helper/shared_preferences.dart';
 import '../../helper/show_snackbar.dart';
 import '../home/main_screen.dart';
 
