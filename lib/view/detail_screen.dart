@@ -28,7 +28,7 @@ class DetailsScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(Icons.arrow_back_ios),
+              icon: Icon(Icons.arrow_back_ios, color: kPrimeryColor,),
             ),
           ),
           body: SafeArea(

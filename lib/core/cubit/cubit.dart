@@ -24,10 +24,12 @@ class FoodCubit extends Cubit<AppState> {
   var likedItems = [];
   var cartItems = [];
   var cartIndex = [];
+
   ////////////////////////////////////////
   String? email;
   String? password;
   String? name;
+
   ////////////////////////////////////////
   var user = FirebaseAuth.instance.currentUser;
   TextEditingController nameController = TextEditingController();
@@ -35,6 +37,7 @@ class FoodCubit extends Cubit<AppState> {
   TextEditingController passwordController = TextEditingController();
   PageController pageController = PageController();
   ImagePicker imagePicker = ImagePicker();
+
   ////////////////////////////////////////
   List<IconData> icons = [
     Icons.home_outlined,
@@ -45,32 +48,38 @@ class FoodCubit extends Cubit<AppState> {
         img: 'assets/images/food/1.png',
         title: 'Shish Kebab',
         subTitle: 'shish kebab',
-        price: 12.99),
+        price: 12.99,
+        id: 1),
     Food(
         img: 'assets/images/food/2.png',
         title: 'Pizza',
         subTitle: 'California-style',
-        price: 12.50),
+        price: 12.50,
+        id: 2),
     Food(
         img: 'assets/images/food/3.png',
         title: 'Hamburger',
         subTitle: 'Hamburger',
-        price: 7.99),
+        price: 7.99,
+        id: 3),
     Food(
         img: 'assets/images/food/4.png',
         title: 'Mozzarella sticks',
         subTitle: 'Mozzarella sticks',
-        price: 5.99),
+        price: 5.99,
+        id: 4),
     Food(
         img: 'assets/images/food/5.png',
         title: 'Chicken nugget',
         subTitle: 'Chicken nugget',
-        price: 12.99),
+        price: 12.99,
+        id: 5),
     Food(
         img: 'assets/images/food/6.png',
         title: 'Cheese fries',
         subTitle: 'Cheese fries',
-        price: 12.99),
+        price: 12.99,
+        id: 6),
   ];
   List<CategoryModel> category = [
     CategoryModel(icon: 'assets/icons/category/dish.png', title: 'All'),
@@ -81,26 +90,31 @@ class FoodCubit extends Cubit<AppState> {
     CategoryModel(icon: 'assets/icons/category/spaghetti.png', title: 'Meals'),
   ];
   List screens = [const HomeScreen(), const CartScreen()];
+
   ////////////////////////////////////////
   void changeIndex(index) {
     currentIndex = index;
     emit(BottomNavChanges());
   }
+
   ////////////////////////////////////////
   void changeIndexOfCategories(index) {
     indexOfCategories = index;
     emit(CategoryChanges());
   }
+
   ////////////////////////////////////////
   void ratingBarChange(value) {
     ratingCount = value;
     emit(RatingBarChanges());
   }
+
   ////////////////////////////////////////
   void plusCount() {
     priceCount++;
     emit(PlusItemChanges());
   }
+
   ////////////////////////////////////////
   void minusCount() {
     if (priceCount > 0) {
@@ -109,44 +123,51 @@ class FoodCubit extends Cubit<AppState> {
     }
     emit(MinusItemChanges());
   }
+
   ////////////////////////////////////////
   void liked() {
     isLiked = !isLiked;
     emit(LikeState());
   }
+
   ////////////////////////////////////////
   void removeItem(index, item) {
     item.removeAt(index);
     emit(RemoveState());
   }
+
   ////////////////////////////////////////
   itemNumber() {
     emit(ItemCountState());
     count = cartItems.length;
     emit(ItemCountState());
   }
+
   ////////////////////////////////////////
   void convertValue() {
     isVisible = !isVisible;
     emit(ChangeState());
   }
+
   ////////////////////////////////////////
   Future<void> loginUser() async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email!, password: password!);
   }
+
   ////////////////////////////////////////
   Future<void> registerUser() async {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email!, password: password!);
   }
-  void updateName(){
+
+  void updateName() {
     user?.updateDisplayName(name);
     emit(UpdateProfileState());
   }
-  changeImage(image){
 
-  }
+  changeImage(image) {}
+
   ////////////////////////////////////////
   Future selectPhoto(context) async {
     return showModalBottomSheet(
