@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/core/cubit/states.dart';
@@ -163,13 +165,29 @@ class FoodCubit extends Cubit<AppState> {
     user.currentUser?.updateDisplayName(name);
 
   }
-
+  pageViewIndex(){
+    return Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+      emit(ChangePageViewIndexState());
+      if (indexOfPageView < 5) {
+        indexOfPageView++;
+        emit(ChangePageViewIndexState());
+        pageController.animateToPage(
+          indexOfPageView,
+          duration: const Duration(milliseconds: 350),
+          curve: Curves.ease,
+        );
+        emit(ChangePageViewIndexState());
+      } else {
+        indexOfPageView = -1;
+        emit(ChangePageViewIndexState());
+      }
+      emit(ChangePageViewIndexState());
+    });
+  }
   void updateName() {
     user?.updateDisplayName(name);
     emit(UpdateProfileState());
   }
-
-  changeImage(image) {}
 
   ////////////////////////////////////////
   Future selectPhoto(context) async {
