@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.black54,
                 ),
               ),
-              home: auth == null? const RegisterScreen() : const MainScreen(),
+               home: auth == null? const RegisterScreen() : const MainScreen(),
             );
           }),
     );

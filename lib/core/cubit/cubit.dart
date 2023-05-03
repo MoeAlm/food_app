@@ -1,3 +1,4 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/core/cubit/states.dart';
@@ -29,7 +30,7 @@ class FoodCubit extends Cubit<AppState> {
   String? email;
   String? password;
   String? name;
-
+  String imageUrl = 'assets/images/profile.jpg';
   ////////////////////////////////////////
   var user = FirebaseAuth.instance.currentUser;
   TextEditingController nameController = TextEditingController();
@@ -37,7 +38,6 @@ class FoodCubit extends Cubit<AppState> {
   TextEditingController passwordController = TextEditingController();
   PageController pageController = PageController();
   ImagePicker imagePicker = ImagePicker();
-
   ////////////////////////////////////////
   List<IconData> icons = [
     Icons.home_outlined,
@@ -156,9 +156,12 @@ class FoodCubit extends Cubit<AppState> {
   }
 
   ////////////////////////////////////////
-  Future<void> registerUser() async {
-    await FirebaseAuth.instance
+  Future<void> registerUser({required name}) async {
+    var user = FirebaseAuth.instance;
+    await user
         .createUserWithEmailAndPassword(email: email!, password: password!);
+    user.currentUser?.updateDisplayName(name);
+
   }
 
   void updateName() {
@@ -183,7 +186,11 @@ class FoodCubit extends Cubit<AppState> {
                   title: const Text('Camera'),
                   onTap: () {
                     Navigator.pop(context);
-                    imagePicker.pickImage(source: ImageSource.camera);
+                    imagePicker.pickImage(source: ImageSource.camera).then((value) {
+                      imageUrl = value.toString();
+                      emit(UpdateProfileState());
+                    });
+                    emit(UpdateProfileState());
                   },
                 ),
                 const Divider(),

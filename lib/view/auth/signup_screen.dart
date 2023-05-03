@@ -22,7 +22,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-
   GlobalKey<FormState> formKey = GlobalKey();
   bool isLoading = false;
   bool isVisible = true;
@@ -40,13 +39,12 @@ class _SignUpState extends State<SignUp> {
             child: Scaffold(
               resizeToAvoidBottomInset: false,
               appBar: AppBar(
-                title: buildText(
-                  width,
-                  text: 'Food App',
-                  size: 0.075,
-                  color: Colors.black,
-                  weight: FontWeight.w700,
+                title: Text(
+                  'Sign Up',
+                  style: TextStyle(
+                      fontSize: width * 0.07, fontWeight: FontWeight.bold),
                 ),
+                centerTitle: true,
               ),
               body: Stack(
                 children: [
@@ -63,143 +61,167 @@ class _SignUpState extends State<SignUp> {
                   ).pOnly(top: height * 0.1),
                   Form(
                     key: formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: ListView(
                       children: [
-                        Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              fontSize: width * 0.09,
-                              fontWeight: FontWeight.bold),
-                        ).pOnly(bottom: width * 0.01),
-                        Text(
-                          'And find food near your!',
-                          style: TextStyle(
-                              fontSize: width * 0.045, color: Colors.black54),
-                        ).pOnly(bottom: height * 0.08),
-                        defaultTextFormField(
-                          label: 'Username',
-                          inputType: TextInputType.emailAddress,
-                          hint: 'Enter your username',
-                          onChanged: (text) {
-                            cubit.email = text;
-                          },
-                        ),
-                        defaultTextFormField(
-                          label: 'Password',
-                          inputType: TextInputType.visiblePassword,
-                          hint: 'Enter your password',
-                          iconButton: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                isVisible = !isVisible;
-                              });
-                            },
-                            icon: isVisible
-                                ? const Icon(Icons.visibility)
-                                : const Icon(Icons.visibility_off),
-                          ),
-                          obscureText: isVisible,
-                          onChanged: (text) {
-                            cubit.password = text;
-                          },
-                        ).py8(),
-                        SizedBox(
-                          height: height * 0.00,
-                        ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                width: width * 0.5,
-                                child: ElevatedButton(
-                                  onPressed: () async {
-                                    //اوبجكت لـ FirebaseAuth
-                                    if (formKey.currentState!.validate()) {
-                                      setState(() {
-                                        isLoading = true;
-                                      });
-                                      try {
-                                        await cubit.registerUser();
-                                        Navigator.push(context,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Stack(
+                              children: [
+                                CircleAvatar(
+                                  radius: width * 0.23,
+                                  backgroundImage: AssetImage(
+                                    cubit.imageUrl),
+                                ),
+                                Positioned(
+                                  top: width * 0.35,
+                                  left: width * 0.29,
+                                  child: CircleAvatar(
+                                    backgroundColor: kPrimeryColor,
+                                    radius: width * 0.04,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        cubit.selectPhoto(context);
+                                      },
+                                      icon: Icon(
+                                        Icons.mode_edit_outline_outlined,
+                                        color: Colors.white,
+                                        size: width * 0.04,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            defaultTextFormField(
+                              label: 'Name',
+                              inputType: TextInputType.emailAddress,
+                              hint: 'Enter your Name',
+                              onChanged: (text) {
+                                cubit.name = text;
+                              },
+                            ),
+                            defaultTextFormField(
+                              label: 'Email',
+                              inputType: TextInputType.emailAddress,
+                              hint: 'Enter your Email',
+                              onChanged: (text) {
+                                cubit.email = text;
+                              },
+                            ).py8(),
+                            defaultTextFormField(
+                              label: 'Password',
+                              inputType: TextInputType.visiblePassword,
+                              hint: 'Enter your password',
+                              iconButton: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isVisible = !isVisible;
+                                  });
+                                },
+                                icon: isVisible
+                                    ? const Icon(Icons.visibility)
+                                    : const Icon(Icons.visibility_off),
+                              ),
+                              obscureText: isVisible,
+                              onChanged: (text) {
+                                cubit.password = text;
+                              },
+                            ).pOnly(bottom: height * 0.02),
+                            Column(
+                              children: [
+                                SizedBox(
+                                  width: width * 0.5,
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      //اوبجكت لـ FirebaseAuth
+                                      if (formKey.currentState!.validate()) {
+                                        setState(() {
+                                          isLoading = true;
+                                        });
+                                        try {
+                                          await cubit.registerUser(name: cubit.name);
+                                          Navigator.push(
+                                            context,
                                             MaterialPageRoute(
                                                 builder: (context) {
-                                          return const MainScreen();
-                                        }));
-                                        CacheHelper.setData(key: 'Auth', value: cubit.email!);
-                                      } on FirebaseAuthException catch (e) {
-                                        if (e.code == "email-already-in-use") {
+                                              return const MainScreen();
+                                            }),
+                                          );
+                                          CacheHelper.setData(
+                                              key: 'Auth', value: cubit.email!);
+                                        } on FirebaseAuthException catch (e) {
+                                          if (e.code ==
+                                              "email-already-in-use") {
+                                            showSnackBar(context,
+                                                text: 'Email is Already exit');
+                                          } else if (e.code ==
+                                              "weak-password") {
+                                            showSnackBar(context,
+                                                text: 'Weak password');
+                                          }
+                                        } catch (e) {
                                           showSnackBar(context,
-                                              text: 'Email is Already exit');
-                                        } else if (e.code == "weak-password") {
-                                          showSnackBar(context,
-                                              text: 'Weak password');
+                                              text: 'There was an error');
                                         }
-                                      } catch (e) {
-                                        showSnackBar(context,
-                                            text: 'There was an error');
+                                        setState(() {
+                                          isLoading = false;
+                                        });
                                       }
-                                      setState(() {
-                                        isLoading = false;
-                                      });
-                                    }
-                                  },
-                                  style: OutlinedButton.styleFrom(
-                                      backgroundColor: kPrimeryColor,
-                                      foregroundColor: Colors.white),
-                                  child: Text(
-                                    'Sign Up',
-                                    style: TextStyle(fontSize: width * 0.05),
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                        backgroundColor: kPrimeryColor,
+                                        foregroundColor: Colors.white),
+                                    child: Text(
+                                      'Sign Up',
+                                      style: TextStyle(fontSize: width * 0.05),
+                                    ),
                                   ),
                                 ),
-                              ).pOnly(bottom: height * 0.01),
-                            ],
-                          ),
-                        ).pOnly(bottom: height * 0.22),
-                        Align(
-                          alignment: Alignment.center,
-                          child: buildText(
-                            width,
-                            text: 'Or via social media',
-                            size: 0.04,
-                            color: Colors.black54,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.asset(
-                              'assets/icons/social/facebook.png',
-                              width: width * 0.1,
+                              ],
+                            ).pOnly(bottom: height * 0.12),
+                            buildText(
+                              width,
+                              text: 'Or via social media',
+                              size: 0.04,
+                              color: Colors.black54,
                             ),
-                            Image.asset(
-                              'assets/icons/social/google.png',
-                              width: width * 0.1,
-                            ),
-                            Image.asset(
-                              'assets/icons/social/linkedin.png',
-                              width: width * 0.1,
-                            ),
-                          ],
-                        ).px(width * 0.2).py16(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Already have an account?',
-                              style: TextStyle(color: Colors.black54),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(builder: (context) {
-                                    return const LogIn();
-                                  }),
-                                );
-                              },
-                              child: const Text(' Log In'),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Image.asset(
+                                  'assets/icons/social/facebook.png',
+                                  width: width * 0.1,
+                                ),
+                                Image.asset(
+                                  'assets/icons/social/google.png',
+                                  width: width * 0.1,
+                                ),
+                                Image.asset(
+                                  'assets/icons/social/linkedin.png',
+                                  width: width * 0.1,
+                                ),
+                              ],
+                            ).px(width * 0.2).py16(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Already have an account?',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(builder: (context) {
+                                        return const LogIn();
+                                      }),
+                                    );
+                                  },
+                                  child: const Text(' Log In'),
+                                ),
+                              ],
                             ),
                           ],
                         ),

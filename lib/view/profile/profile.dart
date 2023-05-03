@@ -76,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                     radius: width * 0.2,
                     child: Hero(
                       tag: 'profile',
-                      child: Image.asset('assets/images/profile.jpg'),
+                      child: Image.asset(cubit.imageUrl),
                     ),
                   ),
                 ).py(16),
