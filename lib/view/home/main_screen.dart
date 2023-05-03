@@ -34,7 +34,7 @@ class MainScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return ProfileScreen();
+                      return const ProfileScreen();
                     },
                   ),
                 );
@@ -44,7 +44,7 @@ class MainScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   child: Hero(
                       tag: 'profile',
-                      child: Image.asset('assets/images/profile.jpg')),
+                      child: Image.asset(cubit.imageUrl)),
                 ),
               ).px(6),
             ),

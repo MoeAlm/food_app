@@ -79,7 +79,7 @@ class ProfileScreen extends StatelessWidget {
                       child: Image.asset(cubit.imageUrl),
                     ),
                   ),
-                ).py(16),
+                ).py(height * 0.01),
                 buildText(
                   width,
                   text: cubit.user?.displayName ?? 'Mohammed Almazouzi',
