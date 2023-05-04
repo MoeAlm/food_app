@@ -18,7 +18,6 @@ class FoodCubit extends Cubit<AppState> {
   static FoodCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
   int indexOfCategories = 0;
-  int indexOfPageView = 0;
   double ratingCount = 0;
   int priceCount = 1;
   int count = 0;
@@ -38,7 +37,6 @@ class FoodCubit extends Cubit<AppState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  PageController pageController = PageController();
   ImagePicker imagePicker = ImagePicker();
   ////////////////////////////////////////
   List<IconData> icons = [
@@ -164,25 +162,6 @@ class FoodCubit extends Cubit<AppState> {
         .createUserWithEmailAndPassword(email: email!, password: password!);
     user.currentUser?.updateDisplayName(name);
 
-  }
-  pageViewIndex(){
-    return Timer.periodic(const Duration(seconds: 3), (Timer timer) {
-      emit(ChangePageViewIndexState());
-      if (indexOfPageView < 5) {
-        indexOfPageView++;
-        emit(ChangePageViewIndexState());
-        pageController.animateToPage(
-          indexOfPageView,
-          duration: const Duration(milliseconds: 350),
-          curve: Curves.ease,
-        );
-        emit(ChangePageViewIndexState());
-      } else {
-        indexOfPageView = -1;
-        emit(ChangePageViewIndexState());
-      }
-      emit(ChangePageViewIndexState());
-    });
   }
   void updateName() {
     user?.updateDisplayName(name);
