@@ -38,13 +38,16 @@ class CartScreen extends StatelessWidget {
             itemCount: cubit.cartItems.length,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
-                onTap: () {},
-                child: buildCart(width, height, model: cubit.cartItems[index]).px12(),
-                // child: favouriteItem(height, width,
-                //     model: cubit.cartItems[index], onPressed: () {
-                //   cubit.removeItem(index, cubit.cartItems);
-                //   cubit.cartIndex.removeAt(index);
-                // }).pOnly(top: 12).px12(),
+                onLongPress: () {
+                  cubit.removeItem(index, cubit.cartItems);
+                  cubit.itemNumber();
+                },
+                child: buildCart(width, height, model: cubit.cartItems[index],
+                    onAdd: () {
+                  cubit.plusCount();
+                }, onRemove: () {
+                  cubit.minusCount();
+                }, priceCount: cubit.priceCount).px12(),
               );
             },
           ),
@@ -53,73 +56,72 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  Widget buildCart(double width, double height, {required Food model}) {
+  Widget buildCart(double width, double height,
+      {required Food model,
+      required Function() onAdd,
+      required Function() onRemove,
+      required priceCount,}) {
     return SizedBox(
-                width: width,
-                height: height * 0.2,
-                child: Card(
-                  elevation: 0.3,
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(
-                        model.img,
-                        width: width * 0.35,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          buildText(width,
-                              text: model.title,
-                              size: 0.06,
-                              color: Colors.black,
-                              weight: FontWeight.bold),
-                          buildText(width,
-                                  text: model.subTitle,
-                                  size: 0.035,
-                                  color: Colors.black12,
-                                  weight: FontWeight.bold)
-                              .py12(),
-                          buildText(width,
-                              text: '\$${model.price}',
-                              size: 0.06,
-                              color: kPrimeryColor,
-                              weight: FontWeight.bold),
-                        ],
-                      ),
-                      Container(
-                        height: height * 0.2,
-                        width: width * 0.09,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: kPrimeryColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Column(
-                          children: [
-                            TextButton(
-                                onPressed: () {},
-                                child: buildText(width,
-                                    text: '+',
-                                    size: 0.08,
-                                    color: Colors.white)),
-                            buildText(width,
-                                text: '3', size: 0.065, color: Colors.white),
-                            TextButton(
-                                onPressed: () {},
-                                child: buildText(width,
-                                    text: '-',
-                                    size: 0.08,
-                                    color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ).p8()
-                    ],
+      width: width,
+      height: height * 0.2,
+      child: Card(
+        elevation: 0.3,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset(
+              model.img,
+              width: width * 0.3,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                buildText(width,
+                    text: model.title,
+                    size: 0.06,
+                    color: Colors.black,
+                    weight: FontWeight.bold),
+                buildText(width,
+                        text: model.subTitle,
+                        size: 0.035,
+                        color: Colors.black12,
+                        weight: FontWeight.bold)
+                    .py12(),
+                buildText(width,
+                    text: '\$${(model.price * priceCount).toStringAsFixed(2)}',
+                    size: 0.06,
+                    color: kPrimeryColor,
+                    weight: FontWeight.bold),
+              ],
+            ),
+            Container(
+              height: height * 0.2,
+              width: width * 0.085,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: kPrimeryColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: [
+                  TextButton(
+                      onPressed: onAdd,
+                      child: buildText(width,
+                          text: '+', size: 0.08, color: Colors.white)),
+                  buildText(width, text: '${priceCount}', size: 0.06, color: Colors.white),
+                  TextButton(
+                    onPressed: onRemove,
+                    child: buildText(width,
+                        text: '-', size: 0.08, color: Colors.white),
                   ),
-                ),
-              );
+                ],
+              ),
+            ).p8()
+          ],
+        ),
+      ),
+    );
   }
 }

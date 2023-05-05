@@ -9,10 +9,9 @@ import '../components/favourite_components.dart';
 import 'detail_screen.dart';
 
 class ItemsScreen extends StatelessWidget {
-  final String text;
-  final List list;
+  const ItemsScreen({super.key});
 
-  const ItemsScreen({super.key, required this.text, required this.list});
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +24,14 @@ class ItemsScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: buildText(width,
-                text: text,//'Favourite'*/,
+                text: 'Favourite',
                 size: 0.08,
                 color: Colors.black,
                 weight: FontWeight.w800),
             centerTitle: true,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back_ios_new),
-            ),
           ),
           body: ListView.builder(
-            itemCount: list.length,
+            itemCount: cubit.likedItems.length,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: (){
@@ -46,14 +39,14 @@ class ItemsScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailsScreen(
-                        model: list[index], index: index,
+                        model: cubit.likedItems[index], index: index,
                       ),
                     ),
                   );
                 },
                 child: favouriteItem(height, width,
-                    model: list[index], onPressed: () {
-                  cubit.removeItem(index, list);
+                    model: cubit.likedItems[index], onPressed: () {
+                  cubit.removeItem(index, cubit.likedItems);
                 }).pOnly(top: 12).px12(),
               );
             },

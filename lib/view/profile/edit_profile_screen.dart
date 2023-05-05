@@ -35,7 +35,6 @@ class EditProfileScreen extends StatelessWidget {
               },
               icon: Icon(
                 CupertinoIcons.back,
-                color: kPrimeryColor,
                 size: width * 0.085,
               ),
             ),
@@ -122,7 +121,6 @@ class EditProfileScreen extends StatelessWidget {
                       width: width * 0.35,
                       child: ElevatedButton(
                         onPressed: () {
-                          cubit.name = cubit.nameController.text;
                           cubit.updateName();
                           Navigator.pop(context);
                           //cubit.user?.updatePassword(_passwordController.text);

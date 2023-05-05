@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           return Container(
                             decoration: BoxDecoration(
                                 color: Colors.blue.withOpacity(0.3),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     colors: [
                                       Colors.transparent,
                                       Colors.black
@@ -111,7 +111,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               ).px(12).py12(),
                             ),
                           ).p(12);
-                        }),
+                        },
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                    ),
                   ),
                   Align(
                       alignment: Alignment.center,

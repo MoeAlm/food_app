@@ -8,7 +8,7 @@ import 'package:badges/badges.dart' as badges;
 
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
-import '../fav_food_screen.dart';
+import '../cart_screen.dart';
 import '../profile/profile.dart';
 import 'drawer.dart';
 
@@ -61,9 +61,9 @@ class MainScreen extends StatelessWidget {
                   );
                 },
                 child: badges.Badge(
-                  badgeContent: Text(
-                    '${cubit.count}',
-                    style: const TextStyle(color: Colors.white),
+                  badgeContent: const Text(
+                    '0',
+                    style: TextStyle(color: Colors.white),
                   ),
                   child: Image.asset(
                     'assets/icons/chat.png',
@@ -78,10 +78,7 @@ class MainScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return ItemsScreen(
-                          text: 'Favourite',
-                          list: cubit.likedItems,
-                        );
+                        return const CartScreen();
                       },
                     ),
                   );
@@ -92,7 +89,7 @@ class MainScreen extends StatelessWidget {
                     style: const TextStyle(color: Colors.white),
                   ),
                   child: Image.asset(
-                    'assets/icons/heart.png',
+                    'assets/icons/cart.png',
                     width: width * 0.08,
                     color: Colors.black87,
                   ),

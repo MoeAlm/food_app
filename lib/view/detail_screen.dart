@@ -28,7 +28,7 @@ class DetailsScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back_ios, color: kPrimeryColor,),
+              icon: Icon(Icons.arrow_back_ios,),
             ),
           ),
           body: SafeArea(
@@ -197,6 +197,7 @@ class DetailsScreen extends StatelessWidget {
                             onPressed: () {
                               cubit.cartItems.add(cubit.food[index]);
                               cubit.cartIndex.add(index);
+                              cubit.itemNumber();
                             },
                             style: OutlinedButton.styleFrom(
                                 backgroundColor: kPrimeryColor,

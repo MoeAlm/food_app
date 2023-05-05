@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app_api/view/home/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '../../view/cart_screen.dart';
+import '../../view/fav_food_screen.dart';
 import '../model/category_model.dart';
 import '../model/food_model.dart';
 
@@ -31,6 +31,7 @@ class FoodCubit extends Cubit<AppState> {
   String? email;
   String? password;
   String? name;
+  String? displayedName;
   String imageUrl = 'assets/images/profile.jpg';
   ////////////////////////////////////////
   var user = FirebaseAuth.instance.currentUser;
@@ -41,7 +42,7 @@ class FoodCubit extends Cubit<AppState> {
   ////////////////////////////////////////
   List<IconData> icons = [
     Icons.home_outlined,
-    Icons.shopping_bag_outlined,
+    Icons.favorite_outline_rounded,
   ];
   List<Food> food = [
     Food(
@@ -89,14 +90,14 @@ class FoodCubit extends Cubit<AppState> {
     CategoryModel(icon: 'assets/icons/category/cake.png', title: 'Cakes'),
     CategoryModel(icon: 'assets/icons/category/spaghetti.png', title: 'Meals'),
   ];
-  List screens = [const HomeScreen(), const CartScreen()];
+  List screens = [const HomeScreen(), const ItemsScreen()];
+
 
   ////////////////////////////////////////
   void changeIndex(index) {
     currentIndex = index;
     emit(BottomNavChanges());
   }
-
   ////////////////////////////////////////
   void changeIndexOfCategories(index) {
     indexOfCategories = index;
@@ -138,9 +139,9 @@ class FoodCubit extends Cubit<AppState> {
 
   ////////////////////////////////////////
   itemNumber() {
-    emit(ItemCountState());
     count = cartItems.length;
     emit(ItemCountState());
+    return count;
   }
 
   ////////////////////////////////////////
@@ -163,9 +164,10 @@ class FoodCubit extends Cubit<AppState> {
     user.currentUser?.updateDisplayName(name);
 
   }
-  void updateName() {
-    user?.updateDisplayName(name);
+  updateName() {
+    name = nameController.text;
     emit(UpdateProfileState());
+    return user?.updateDisplayName(name);
   }
 
   ////////////////////////////////////////
