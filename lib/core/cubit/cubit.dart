@@ -20,6 +20,7 @@ class FoodCubit extends Cubit<AppState> {
   int indexOfCategories = 0;
   double ratingCount = 0;
   int priceCount = 1;
+  int? favIndex;
   int count = 0;
   bool isLiked = false;
   bool isVisible = true;

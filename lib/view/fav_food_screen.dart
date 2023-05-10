@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app_api/components/text_components.dart';
 import 'package:food_app_api/core/cubit/cubit.dart';
 import 'package:food_app_api/core/cubit/states.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -11,8 +10,6 @@ import 'detail_screen.dart';
 class ItemsScreen extends StatelessWidget {
   const ItemsScreen({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FoodCubit, AppState>(
@@ -22,24 +19,25 @@ class ItemsScreen extends StatelessWidget {
         double height = MediaQuery.of(context).size.height;
         double width = MediaQuery.of(context).size.width;
         return Scaffold(
-          appBar: AppBar(
-            title: buildText(width,
-                text: 'Favourite',
-                size: 0.08,
-                color: Colors.black,
-                weight: FontWeight.w800),
-            centerTitle: true,
-          ),
+          // appBar: AppBar(
+          //   title: buildText(width,
+          //       text: 'Favourite',
+          //       size: 0.08,
+          //       color: Colors.black,
+          //       weight: FontWeight.w800),
+          //   centerTitle: true,
+          // ),
           body: ListView.builder(
             itemCount: cubit.likedItems.length,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailsScreen(
-                        model: cubit.likedItems[index], index: index,
+                        model: cubit.likedItems[index],
+                        index: index,
                       ),
                     ),
                   );

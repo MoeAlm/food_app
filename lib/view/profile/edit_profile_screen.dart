@@ -59,15 +59,14 @@ class EditProfileScreen extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: width * 0.23,
-                      backgroundImage: AssetImage(
-                          cubit.imageUrl),
+                      backgroundImage: AssetImage(cubit.imageUrl),
                     ),
                     Positioned(
                       top: width * 0.35,
-                      left: width * 0.29,
+                      left: width * 0.32,
                       child: CircleAvatar(
                         backgroundColor: kPrimeryColor,
-                        radius: width * 0.04,
+                        radius: width * 0.05,
                         child: IconButton(
                           onPressed: () {
                             cubit.selectPhoto(context);

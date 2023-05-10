@@ -3,6 +3,7 @@ import 'package:food_app_api/components/text_components.dart';
 import 'package:food_app_api/core/constants/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
 
@@ -49,5 +50,6 @@ class MyDrawer extends StatelessWidget {
         ],
       ),
     );
+
   }
 }

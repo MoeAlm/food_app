@@ -39,12 +39,10 @@ class MainScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: CircleAvatar(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Hero(
-                      tag: 'profile',
-                      child: Image.asset(cubit.imageUrl)),
+              child: Hero(
+                tag: 'profile',
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(cubit.imageUrl),
                 ),
               ).px(6),
             ),
@@ -115,10 +113,10 @@ class MainScreen extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SearchLayout(),
-                  ),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchLayout(),
+                ),
               );
             },
             backgroundColor: Colors.orange,

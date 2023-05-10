@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     end: Alignment.centerLeft,
                                 ),
                                 borderRadius: BorderRadius.circular(20),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                     image:
                                         AssetImage('assets/images/banner.jpg'),
                                     fit: BoxFit.cover,
@@ -222,9 +222,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             model: cubit.food[index],
                             onPressed: () {
                               cubit.liked();
-                              cubit.likedItems.add(cubit.food[index]);
+                              cubit.isLiked ? cubit.likedItems.add(cubit.food[index]) : null;
+                              setState(() {
+                                cubit.favIndex = index;
+                              });
                             },
-                            icon: cubit.isLiked
+                            icon: cubit.favIndex == index && cubit.isLiked
                                 ? Icon(
                                     Icons.favorite,
                                     color: Colors.red,

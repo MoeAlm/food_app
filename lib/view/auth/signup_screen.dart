@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/components/text_components.dart';
@@ -25,6 +26,9 @@ class _SignUpState extends State<SignUp> {
   GlobalKey<FormState> formKey = GlobalKey();
   bool isLoading = false;
   bool isVisible = true;
+  FirebaseStorage storage =
+      FirebaseStorage.instance;
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,15 +74,20 @@ class _SignUpState extends State<SignUp> {
                               children: [
                                 CircleAvatar(
                                   radius: width * 0.23,
-                                  backgroundImage: AssetImage(
-                                    cubit.imageUrl),
+                                  // backgroundImage: AssetImage(
+                                  //   cubit.imageUrl),
+                                  child: Icon(
+                                    Icons.person_rounded,
+                                    size: width * 0.3,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                                 Positioned(
                                   top: width * 0.35,
-                                  left: width * 0.29,
+                                  left: width * 0.32,
                                   child: CircleAvatar(
                                     backgroundColor: kPrimeryColor,
-                                    radius: width * 0.04,
+                                    radius: width * 0.05,
                                     child: IconButton(
                                       onPressed: () {
                                         cubit.selectPhoto(context);
@@ -140,7 +149,8 @@ class _SignUpState extends State<SignUp> {
                                           isLoading = true;
                                         });
                                         try {
-                                          await cubit.registerUser(name: cubit.name);
+                                          await cubit.registerUser(
+                                              name: cubit.name);
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
