@@ -19,27 +19,33 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  PageController pageController = PageController();
+  late PageController pageController;
   int indexOfPageView = 0;
 
   @override
   void initState() {
     super.initState();
 
-    /// For Changing Index of Page View Automatically
-    Timer.periodic(const Duration(seconds: 3), (Timer timer) {
-      if (indexOfPageView < 4) {
-        indexOfPageView++;
-        pageController.animateToPage(
-          indexOfPageView,
-          duration: const Duration(milliseconds: 350),
-          curve: Curves.ease,
-        );
-      } else {
-        indexOfPageView = -1;
-      }
+    // Create the pageController here
+    pageController = PageController();
+
+    // Schedule the code execution after the widget has been fully built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+        if (indexOfPageView < 4) {
+          indexOfPageView++;
+          pageController.animateToPage(
+            indexOfPageView,
+            duration: const Duration(milliseconds: 350),
+            curve: Curves.ease,
+          );
+        } else {
+          indexOfPageView = -1;
+        }
+      });
     });
   }
+
 
   @override
   void dispose() {
@@ -67,51 +73,51 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: height * 0.19,
                     child: PageView.builder(
-                        controller: pageController,
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                                color: Colors.blue.withOpacity(0.3),
-                                gradient: const LinearGradient(
-                                    colors: [
-                                      Colors.transparent,
-                                      Colors.black
-                                    ],
-                                    begin: Alignment.centerRight,
-                                    end: Alignment.centerLeft,
-                                ),
-                                borderRadius: BorderRadius.circular(20),
-                                image: const DecorationImage(
-                                    image:
-                                        AssetImage('assets/images/banner.jpg'),
-                                    fit: BoxFit.cover,
-                                ),
+                      controller: pageController,
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.3),
+                            gradient: const LinearGradient(
+                              colors: [
+                                Colors.transparent,
+                                Colors.black
+                              ],
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
                             ),
-                            child: SizedBox(
-                              width: width,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Let\'s find',
-                                    style: TextStyle(
-                                        fontSize: width * 0.09,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    'food near you',
-                                    style: TextStyle(
-                                        fontSize: width * 0.09,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ).px(12).py12(),
+                            borderRadius: BorderRadius.circular(20),
+                            image: const DecorationImage(
+                              image:
+                              AssetImage('assets/images/banner.jpg'),
+                              fit: BoxFit.cover,
                             ),
-                          ).p(12);
-                        },
+                          ),
+                          child: SizedBox(
+                            width: width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Let\'s find',
+                                  style: TextStyle(
+                                      fontSize: width * 0.09,
+                                      color: Colors.white),
+                                ),
+                                Text(
+                                  'food near you',
+                                  style: TextStyle(
+                                      fontSize: width * 0.09,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                )
+                              ],
+                            ).px(12).py12(),
+                          ),
+                        ).p(12);
+                      },
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
                     ),

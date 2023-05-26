@@ -80,9 +80,16 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ).py(height * 0.01),
+                cubit.user?.displayName != null ?
                 buildText(
                   width,
-                  text: cubit.user?.displayName ?? 'Mohammed Almazouzi',
+                  text: cubit.user!.displayName,
+                  size: 0.06,
+                  color: Colors.black,
+                  weight: FontWeight.bold,
+                ): buildText(
+                  width,
+                  text: 'user',
                   size: 0.06,
                   color: Colors.black,
                   weight: FontWeight.bold,
