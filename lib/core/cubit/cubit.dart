@@ -1,7 +1,9 @@
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/core/cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -29,17 +31,13 @@ class FoodCubit extends Cubit<AppState> {
   var cartIndex = [];
 
   ////////////////////////////////////////
-  String? email;
-  String? password;
-  String? name;
-  String? displayedName;
+  String? email, password, name, displayedName;
   String imageUrl = 'assets/images/profile.jpg';
+  XFile? pickedFile;
   ////////////////////////////////////////
+  FirebaseStorage storage = FirebaseStorage.instance;
   var user = FirebaseAuth.instance.currentUser;
-  TextEditingController nameController = TextEditingController();
-  TextEditingController userController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  ImagePicker imagePicker = ImagePicker();
+  TextEditingController? nameController, userController, passwordController = TextEditingController();
   ////////////////////////////////////////
   List<IconData> icons = [
     Icons.home_outlined,
@@ -166,45 +164,66 @@ class FoodCubit extends Cubit<AppState> {
 
   }
   updateName() {
-    name = nameController.text;
+    name = nameController?.text;
     emit(UpdateProfileState());
     return user?.updateDisplayName(name);
   }
 
   ////////////////////////////////////////
-  Future selectPhoto(context) async {
-    return showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.camera),
-                  title: const Text('Camera'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    imagePicker.pickImage(source: ImageSource.camera).then((value) {
-                      imageUrl = value.toString();
-                      emit(UpdateProfileState());
-                    });
-                    emit(UpdateProfileState());
-                  },
-                ),
-                const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.photo),
-                  title: const Text('Gellary'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    imagePicker.pickImage(source: ImageSource.gallery);
-                  },
-                ),
-              ],
-            ).p8(),
-          );
-        });
+
+  Future<File?> selectPhoto(BuildContext context) async {
+    final imagePicker = ImagePicker();
+
+    final pickedSource = await showModalBottomSheet<ImageSource>(
+      context: context,
+      builder: (context) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.2,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ListTile(
+                leading: Icon(Icons.camera),
+                title: Text('Camera'),
+                onTap: () {
+                  Navigator.pop(context, ImageSource.camera);
+                },
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.photo),
+                title: Text('Gallery'),
+                onTap: () {
+                  Navigator.pop(context, ImageSource.gallery);
+                },
+              ),
+            ],
+          ).p8(),
+        );
+      },
+    );
+
+    if (pickedSource != null) {
+      pickedFile = await imagePicker.pickImage(source: pickedSource);
+      if (pickedFile != null) {
+        return File(pickedFile!.path);
+      }
+    }
+
+    return null; // Return null if no image is selected
   }
+  Future<String?> uploadImage(File imageFile) async {
+    try {
+      final fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      final destination = 'images/$fileName';
+      final ref = storage.ref(destination);
+      await ref.putFile(imageFile);
+      imageUrl = await ref.getDownloadURL();
+      return imageUrl;
+    } catch (e) {
+      print('Error uploading image: $e');
+      return null;
+    }
+  }
+
 }

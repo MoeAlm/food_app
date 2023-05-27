@@ -5,10 +5,10 @@ import 'package:food_app_api/core/constants/constant.dart';
 import 'package:food_app_api/core/cubit/cubit.dart';
 import 'package:food_app_api/core/cubit/states.dart';
 
-import '../../components/edit_profile_components.dart';
+import '../../core/components/edit_profile_components.dart';
+
 
 class EditProfileScreen extends StatelessWidget {
-  String? imageUrl;
 
   EditProfileScreen({super.key});
 

@@ -7,7 +7,7 @@ import 'package:food_app_api/view/auth/signup_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../../components/text_components.dart';
+import '../../core/components/text_components.dart';
 import '../../core/components/textformfield.dart';
 import '../../core/constants/constant.dart';
 import '../../helper/shared_preferences.dart';

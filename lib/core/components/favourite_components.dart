@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_api/components/text_components.dart';
+import 'package:food_app_api/core/components/text_components.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../core/model/food_model.dart';
+import '../model/food_model.dart';
 
 Widget favouriteItem(double height, double width,
     {required Food model, required Function() onPressed}) {

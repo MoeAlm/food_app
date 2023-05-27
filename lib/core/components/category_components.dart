@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../core/model/category_model.dart';
+import '../model/category_model.dart';
 
 Widget categoryItem(double height, double width, {required Color color,required CategoryModel model}) {
   return Column(

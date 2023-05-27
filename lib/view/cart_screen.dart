@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app_api/components/text_components.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../core/components/text_components.dart';
 import '../core/constants/constant.dart';
 import '../core/cubit/cubit.dart';
 import '../core/cubit/states.dart';

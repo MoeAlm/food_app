@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_api/components/text_components.dart';
 import 'package:food_app_api/view/auth/signup_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../core/components/text_components.dart';
 import '../../core/constants/constant.dart';
 import 'login_screen.dart';
 

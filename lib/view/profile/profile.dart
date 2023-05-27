@@ -4,8 +4,8 @@ import 'package:food_app_api/core/cubit/cubit.dart';
 import 'package:food_app_api/core/cubit/states.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../../components/favourite_components.dart';
-import '../../components/text_components.dart';
+import '../../core/components/favourite_components.dart';
+import '../../core/components/text_components.dart';
 import '../detail_screen.dart';
 import 'edit_profile_screen.dart';
 

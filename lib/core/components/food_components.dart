@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '../core/model/food_model.dart';
+
+import '../model/food_model.dart';
 
 Widget foodItem(double height, double width,
     {required Food model,
