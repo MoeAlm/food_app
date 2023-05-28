@@ -1,7 +1,6 @@
-
-import 'dart:async';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,6 @@ import 'package:food_app_api/core/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_api/view/home/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:velocity_x/velocity_x.dart';
 import '../../view/fav_food_screen.dart';
 import '../model/category_model.dart';
 import '../model/food_model.dart';
@@ -34,10 +32,19 @@ class FoodCubit extends Cubit<AppState> {
   String? email, password, name, displayedName;
   String imageUrl = 'assets/images/profile.jpg';
   XFile? pickedFile;
+
   ////////////////////////////////////////
   FirebaseStorage storage = FirebaseStorage.instance;
+  String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+  ImagePicker imagePicker = ImagePicker();
+  CollectionReference images = FirebaseFirestore.instance.collection('Images');
+
+
   var user = FirebaseAuth.instance.currentUser;
-  TextEditingController? nameController, userController, passwordController = TextEditingController();
+  TextEditingController? nameController,
+      userController,
+      passwordController = TextEditingController();
+
   ////////////////////////////////////////
   List<IconData> icons = [
     Icons.home_outlined,
@@ -91,12 +98,12 @@ class FoodCubit extends Cubit<AppState> {
   ];
   List screens = [const HomeScreen(), const ItemsScreen()];
 
-
   ////////////////////////////////////////
   void changeIndex(index) {
     currentIndex = index;
     emit(BottomNavChanges());
   }
+
   ////////////////////////////////////////
   void changeIndexOfCategories(index) {
     indexOfCategories = index;
@@ -158,11 +165,11 @@ class FoodCubit extends Cubit<AppState> {
   ////////////////////////////////////////
   Future<void> registerUser({required name}) async {
     var user = FirebaseAuth.instance;
-    await user
-        .createUserWithEmailAndPassword(email: email!, password: password!);
+    await user.createUserWithEmailAndPassword(
+        email: email!, password: password!);
     user.currentUser?.updateDisplayName(name);
-
   }
+
   updateName() {
     name = nameController?.text;
     emit(UpdateProfileState());
@@ -170,60 +177,19 @@ class FoodCubit extends Cubit<AppState> {
   }
 
   ////////////////////////////////////////
-
-  Future<File?> selectPhoto(BuildContext context) async {
-    final imagePicker = ImagePicker();
-
-    final pickedSource = await showModalBottomSheet<ImageSource>(
-      context: context,
-      builder: (context) {
-        return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.2,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ListTile(
-                leading: Icon(Icons.camera),
-                title: Text('Camera'),
-                onTap: () {
-                  Navigator.pop(context, ImageSource.camera);
-                },
-              ),
-              Divider(),
-              ListTile(
-                leading: Icon(Icons.photo),
-                title: Text('Gallery'),
-                onTap: () {
-                  Navigator.pop(context, ImageSource.gallery);
-                },
-              ),
-            ],
-          ).p8(),
-        );
-      },
-    );
-
-    if (pickedSource != null) {
-      pickedFile = await imagePicker.pickImage(source: pickedSource);
-      if (pickedFile != null) {
-        return File(pickedFile!.path);
-      }
-    }
-
-    return null; // Return null if no image is selected
-  }
-  Future<String?> uploadImage(File imageFile) async {
+  Future uploadImage() async {
+    XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+    if (file == null) return;
+    Reference referenceRoot = FirebaseStorage.instance.ref();
+    Reference referenceDirImages = referenceRoot.child('images');
+    Reference referenceImageUpload = referenceDirImages.child(uniqueFileName);
     try {
-      final fileName = DateTime.now().millisecondsSinceEpoch.toString();
-      final destination = 'images/$fileName';
-      final ref = storage.ref(destination);
-      await ref.putFile(imageFile);
-      imageUrl = await ref.getDownloadURL();
-      return imageUrl;
+      await referenceImageUpload.putFile(File(file.path));
+      imageUrl = await referenceImageUpload.getDownloadURL();
+      images.add({'image': imageUrl});
     } catch (e) {
-      print('Error uploading image: $e');
-      return null;
+      print('There is an error in $e');
     }
+    print('${file.path}');
   }
-
 }

@@ -23,3 +23,5 @@ class ItemCountState extends AppState{}
 class UpdateProfileState extends AppState{}
 
 class ChangePageViewIndexState extends AppState{}
+
+class UploadImageState extends AppState{}

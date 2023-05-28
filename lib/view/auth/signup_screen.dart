@@ -1,12 +1,9 @@
-import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_api/view/home/main_screen.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
@@ -31,7 +28,6 @@ class _SignUpState extends State<SignUp> {
   bool isLoading = false;
   bool isVisible = true;
   String? imageUrl;
-  CollectionReference images = FirebaseFirestore.instance.collection('Images');
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +65,11 @@ class _SignUpState extends State<SignUp> {
                   Form(
                     key: formKey,
                     child: StreamBuilder<QuerySnapshot>(
-                        stream: images.snapshots(),
+                        stream: cubit.images.snapshots(),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: 1,
                               itemBuilder: (BuildContext context, int index) {
                                 return Column(
@@ -82,7 +79,7 @@ class _SignUpState extends State<SignUp> {
                                       children: [
                                         CircleAvatar(
                                           radius: width * 0.23,
-                                          backgroundImage:snapshot.data?.docs[index].reference == null ? NetworkImage('') : NetworkImage(
+                                          backgroundImage: NetworkImage(
                                               '${snapshot.data?.docs[index]['image']}'),
                                         ),
                                         Positioned(
@@ -93,42 +90,11 @@ class _SignUpState extends State<SignUp> {
                                             radius: width * 0.05,
                                             child: IconButton(
                                               onPressed: () async {
-                                                //cubit.selectPhoto(context);
-                                                String uniqueFileName =
-                                                DateTime.now()
-                                                    .millisecondsSinceEpoch
-                                                    .toString();
-                                                ImagePicker imagePicker =
-                                                ImagePicker();
-                                                XFile? file =
-                                                await imagePicker.pickImage(
-                                                    source:
-                                                    ImageSource.gallery);
-                                                if (file == null) return;
-                                                Reference referenceRoot =
-                                                FirebaseStorage.instance
-                                                    .ref();
-                                                Reference referenceDirImages =
-                                                referenceRoot.child('images');
-                                                Reference referenceImageUpload =
-                                                referenceDirImages
-                                                    .child(uniqueFileName);
-                                                try {
-                                                  await referenceImageUpload
-                                                      .putFile(File(file.path));
-                                                  imageUrl =
-                                                  await referenceImageUpload
-                                                      .getDownloadURL();
-                                                  images.add({'image': imageUrl});
-                                                } catch (e) {
-                                                  print(
-                                                      'There is an error in $e');
-                                                }
-
-                                                print('${file.path}');
+                                                await cubit.uploadImage();
                                               },
                                               icon: Icon(
-                                                Icons.mode_edit_outline_outlined,
+                                                Icons
+                                                    .mode_edit_outline_outlined,
                                                 color: Colors.white,
                                                 size: width * 0.04,
                                               ),
@@ -191,21 +157,20 @@ class _SignUpState extends State<SignUp> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) {
-                                                          return const MainScreen();
-                                                        }),
+                                                      return const MainScreen();
+                                                    }),
                                                   );
                                                   CacheHelper.setData(
                                                       key: 'Auth',
                                                       value: cubit.email!);
-                                                  images.add({
-                                                    'id' : cubit.email
-                                                  });
+                                                  cubit.images
+                                                      .add({'id': cubit.email});
                                                 } on FirebaseAuthException catch (e) {
                                                   if (e.code ==
                                                       "email-already-in-use") {
                                                     showSnackBar(context,
                                                         text:
-                                                        'Email is Already exit');
+                                                            'Email is Already exit');
                                                   } else if (e.code ==
                                                       "weak-password") {
                                                     showSnackBar(context,
@@ -213,7 +178,8 @@ class _SignUpState extends State<SignUp> {
                                                   }
                                                 } catch (e) {
                                                   showSnackBar(context,
-                                                      text: 'There was an error');
+                                                      text:
+                                                          'There was an error');
                                                 }
                                                 setState(() {
                                                   isLoading = false;
@@ -240,7 +206,7 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceAround,
                                       children: [
                                         Image.asset(
                                           'assets/icons/social/facebook.png',
@@ -257,11 +223,13 @@ class _SignUpState extends State<SignUp> {
                                       ],
                                     ).px(width * 0.2).py16(),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         const Text(
                                           'Already have an account?',
-                                          style: TextStyle(color: Colors.black54),
+                                          style:
+                                              TextStyle(color: Colors.black54),
                                         ),
                                         InkWell(
                                           onTap: () {
@@ -269,8 +237,8 @@ class _SignUpState extends State<SignUp> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) {
-                                                    return const LogIn();
-                                                  }),
+                                                return const LogIn();
+                                              }),
                                             );
                                           },
                                           child: const Text(' Log In'),
@@ -281,11 +249,10 @@ class _SignUpState extends State<SignUp> {
                                 );
                               },
                             );
-                          }else{
-                            return Center(
-                              child: CircularProgressIndicator(),
-                            );
                           }
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
                         }),
                   ),
                 ],
