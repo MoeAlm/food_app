@@ -35,7 +35,7 @@ For more details, explore the project on [GitHub](https://github.com/MoeAlm/food
 ![Screenshot 2](assets/screenshots/Screenshot_1686240668.png)
 *Caption for screenshot 2.*!
 
-[Screenshot 3](assets/screenshots/Screenshot_1686240682.png)
+![Screenshot 3](assets/screenshots/Screenshot_1686240682.png)
 *Caption for screenshot 3.*
 
 ---
