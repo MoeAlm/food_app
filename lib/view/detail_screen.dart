@@ -177,11 +177,11 @@ class DetailsScreen extends StatelessWidget {
                                 },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(60),
-                                  side: BorderSide(color: kPrimeryColor),
+                                  side: BorderSide(color: kPrimaryColor),
                                 ),
                                 backgroundColor: Colors.transparent,
-                                foregroundColor: kPrimeryColor,
-                                splashColor: kPrimeryColor,
+                                foregroundColor: kPrimaryColor,
+                                splashColor: kPrimaryColor,
                                 elevation: 0.0,
                                 child: const Icon(Icons.remove),
                               ),
@@ -200,7 +200,7 @@ class DetailsScreen extends StatelessWidget {
                               cubit.itemNumber();
                             },
                             style: OutlinedButton.styleFrom(
-                                backgroundColor: kPrimeryColor,
+                                backgroundColor: kPrimaryColor,
                                 foregroundColor: Colors.white),
                             child: const Text(
                               'Add To Cart',

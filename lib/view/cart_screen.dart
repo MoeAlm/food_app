@@ -92,7 +92,7 @@ class CartScreen extends StatelessWidget {
                 buildText(width,
                     text: '\$${(model.price * priceCount).toStringAsFixed(2)}',
                     size: 0.06,
-                    color: kPrimeryColor,
+                    color: kPrimaryColor,
                     weight: FontWeight.bold),
               ],
             ),
@@ -101,7 +101,7 @@ class CartScreen extends StatelessWidget {
               width: width * 0.085,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: kPrimeryColor,
+                color: kPrimaryColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(

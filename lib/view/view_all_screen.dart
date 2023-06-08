@@ -30,7 +30,7 @@ class ViewAll extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.arrow_back_ios_new_sharp,
-                  color: kPrimeryColor,
+                  color: kPrimaryColor,
                 )),
           ),
           body: GridView.builder(

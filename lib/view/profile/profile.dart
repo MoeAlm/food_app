@@ -253,7 +253,7 @@ class ProfileScreen extends StatelessWidget {
                 }
                 return Center(
                   child: CircularProgressIndicator(
-                    color: kPrimeryColor,
+                    color: kPrimaryColor,
                   ),
                 );
               }),

@@ -55,7 +55,7 @@ class RegisterScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const LogIn()));
                   },
                   style: OutlinedButton.styleFrom(
-                      backgroundColor: kPrimeryColor,
+                      backgroundColor: kPrimaryColor,
                       foregroundColor: Colors.white),
                   child: Text(
                     'LogIn',

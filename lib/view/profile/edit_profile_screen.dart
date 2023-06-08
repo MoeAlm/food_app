@@ -44,7 +44,7 @@ class EditProfileScreen extends StatelessWidget {
                 onPressed: () {},
                 icon: Icon(
                   Icons.settings,
-                  color: kPrimeryColor,
+                  color: kPrimaryColor,
                   size: width * 0.09,
                 ),
               )
@@ -73,7 +73,7 @@ class EditProfileScreen extends StatelessWidget {
                               top: width * 0.35,
                               left: width * 0.32,
                               child: CircleAvatar(
-                                backgroundColor: kPrimeryColor,
+                                backgroundColor: kPrimaryColor,
                                 radius: width * 0.05,
                                 child: IconButton(
                                   onPressed: () {
@@ -133,7 +133,7 @@ class EditProfileScreen extends StatelessWidget {
                                   //cubit.user?.updatePassword(_passwordController.text);
                                 },
                                 style: OutlinedButton.styleFrom(
-                                    backgroundColor: kPrimeryColor,
+                                    backgroundColor: kPrimaryColor,
                                     foregroundColor: Colors.white),
                                 child: const Text('SAVE'),
                               ),
@@ -147,7 +147,7 @@ class EditProfileScreen extends StatelessWidget {
                 );
               }
               return Center(
-                child: CircularProgressIndicator(color: kPrimeryColor,),
+                child: CircularProgressIndicator(color: kPrimaryColor,),
               );
             }
           ),

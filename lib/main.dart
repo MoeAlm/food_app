@@ -49,7 +49,9 @@ class MyApp extends StatelessWidget {
                 ),
                 scaffoldBackgroundColor: Colors.white,
                 textTheme: GoogleFonts.albertSansTextTheme(
-                  Theme.of(context).textTheme,
+                  Theme
+                      .of(context)
+                      .textTheme,
                 ),
                 iconTheme: const IconThemeData(
                   color: Colors.black54,

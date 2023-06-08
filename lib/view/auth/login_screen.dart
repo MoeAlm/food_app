@@ -144,7 +144,7 @@ class _LogInState extends State<LogIn> {
                                   }
                                 },
                                 style: OutlinedButton.styleFrom(
-                                    backgroundColor: kPrimeryColor,
+                                    backgroundColor: kPrimaryColor,
                                     foregroundColor: Colors.white),
                                 child: Text(
                                   'Login',

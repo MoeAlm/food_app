@@ -18,7 +18,7 @@ class MyDrawer extends StatelessWidget {
           Container(
             height: height * 0.3,
             width: width,
-            color: kPrimeryColor.withOpacity(0.2),
+            color: kPrimaryColor.withOpacity(0.2),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,

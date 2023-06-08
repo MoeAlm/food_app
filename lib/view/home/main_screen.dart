@@ -4,7 +4,6 @@ import 'package:food_app_api/view/chat_screen.dart';
 import 'package:food_app_api/view/home/search_layout.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:badges/badges.dart' as badges;
 
 import '../../core/cubit/cubit.dart';
 import '../../core/cubit/states.dart';
@@ -58,8 +57,8 @@ class MainScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: badges.Badge(
-                  badgeContent: const Text(
+                child: Badge(
+                  label: const Text(
                     '0',
                     style: TextStyle(color: Colors.white),
                   ),
@@ -81,8 +80,8 @@ class MainScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: badges.Badge(
-                  badgeContent: Text(
+                child: Badge(
+                  label: Text(
                     '${cubit.count}',
                     style: const TextStyle(color: Colors.white),
                   ),

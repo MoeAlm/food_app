@@ -86,7 +86,7 @@ class _SignUpState extends State<SignUp> {
                                           top: width * 0.35,
                                           left: width * 0.32,
                                           child: CircleAvatar(
-                                            backgroundColor: kPrimeryColor,
+                                            backgroundColor: kPrimaryColor,
                                             radius: width * 0.05,
                                             child: IconButton(
                                               onPressed: () async {
@@ -187,7 +187,7 @@ class _SignUpState extends State<SignUp> {
                                               }
                                             },
                                             style: OutlinedButton.styleFrom(
-                                                backgroundColor: kPrimeryColor,
+                                                backgroundColor: kPrimaryColor,
                                                 foregroundColor: Colors.white),
                                             child: Text(
                                               'Sign Up',
